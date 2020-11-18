@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <data>
+        <variable name="albumItemAdapter" type="android.widget.BaseAdapter"/>
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:adapter="@{albumItemAdapter}"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/ab_item_name1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                />
+
+            <ImageView
+                android:id="@+id/ab_image1"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_launcher_background"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/ab_item_name2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                />
+
+            <ImageView
+                android:id="@+id/ab_image2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_launcher_background"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>
+
