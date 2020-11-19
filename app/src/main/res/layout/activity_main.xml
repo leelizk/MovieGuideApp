@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="mainViewModel"
+            type="com.example.movieguideapp.ui.viewmodel.MainViewModel" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/text"
+            android:text="@{mainViewModel.mv.text}"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            ></TextView>
+
+        <Button
+            android:id="@+id/clickMe"
+            android:text="点击我试试"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

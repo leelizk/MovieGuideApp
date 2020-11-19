@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
-
+apply plugin: 'kotlin-android-extensions' // 可以直接使用id引用, 不需要findViewByid
 apply plugin: 'kotlin-kapt'  // 必须使用
 
 android {

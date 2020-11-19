@@ -16,6 +16,7 @@ class AlbumListViewModel(application: Application): AndroidViewModel(application
 
     private val albumListData: MutableLiveData<List<AlbumItem>> by lazy {
         MutableLiveData<List<AlbumItem>>().also {
+            //加载数据
             loadData()
         }
     }
