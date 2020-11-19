@@ -9,11 +9,9 @@ import com.example.movieguideapp.data.vo.AlbumItem
 import kotlin.concurrent.thread
 
 
-class AlbumListViewModel(application: Application): AndroidViewModel(application){
+class AlbumListViewModel(): ViewModel(){
 
-    var list : MutableList<AlbumItem> = ArrayList<AlbumItem>()
-
-
+    //动态数据
     private val albumListData: MutableLiveData<List<AlbumItem>> by lazy {
         MutableLiveData<List<AlbumItem>>().also {
             //加载数据
@@ -33,6 +31,7 @@ class AlbumListViewModel(application: Application): AndroidViewModel(application
     //加载测试数据
     private fun loadData(){
         thread(start = true) {
+            var list:MutableList<AlbumItem> = mutableListOf<AlbumItem>();
             for(i in 1..30){
                 val item = AlbumItem(
                     i,"测试"+i,""
@@ -40,6 +39,7 @@ class AlbumListViewModel(application: Application): AndroidViewModel(application
 
                 list.add(item)
             }
+            //刷新数据
             albumListData.postValue(list)
         }
     }
