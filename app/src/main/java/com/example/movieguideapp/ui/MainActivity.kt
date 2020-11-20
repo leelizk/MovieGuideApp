@@ -1,5 +1,6 @@
 package com.example.movieguideapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -48,6 +49,13 @@ class MainActivity : AppCompatActivity() {
             mViewModel.content.postValue(MainVo("fuk....you" + tmp))
 
             tmp ++;
+        }
+
+        showList.setOnClickListener{
+            var intent: Intent = Intent();
+            intent.setClass(this,AlbumListActivity::class.java)
+            startActivity(intent);
+            finish()
         }
 
 

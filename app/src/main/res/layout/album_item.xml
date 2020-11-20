@@ -2,7 +2,7 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     
     <data>
-        <variable name="albumItemAdapter" type="android.widget.BaseAdapter"/>
+        <variable name="twoItem" type="com.example.movieguideapp.data.vo.AlbumTwoItem"/>
     </data>
 
     <LinearLayout
@@ -25,6 +25,7 @@
                 android:typeface="monospace"
                 android:textStyle="bold"
                 android:layout_weight="1"
+                android:text="@{twoItem.oneItem.itemName}"
                 />
 
             <ImageView
@@ -50,6 +51,7 @@
                 android:typeface="monospace"
                 android:textStyle="bold"
                 android:layout_weight="1"
+                android:text="@{twoItem.twoItem.itemName}"
                 />
 
             <ImageView

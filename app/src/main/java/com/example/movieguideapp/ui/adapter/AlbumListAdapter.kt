@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 
-class AlbumItemAdapter<T>(
+class AlbumListAdapter<T>(
     private val context: Context, private val list: List<T>,
     private val layoutId: Int, private val variableId: Int
 

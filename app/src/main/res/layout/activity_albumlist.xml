@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="myAdapter"
+            type="com.example.movieguideapp.ui.adapter.AlbumListAdapter" />
+    </data>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/my_album_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:adapter="@{myAdapter}"
+                >
+
+            </ListView>
+
+        </LinearLayout>
+</layout>
