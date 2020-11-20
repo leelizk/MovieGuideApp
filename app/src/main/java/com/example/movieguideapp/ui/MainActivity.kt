@@ -24,12 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState);
         //获取绑定对象
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-        //模拟数据
-        var ablumList:MutableList<AlbumItem> = mutableListOf();
-        for(i in 1..21){
-            var oneItem:AlbumItem = AlbumItem(i,"测试"+i,"");
-            ablumList.add(oneItem);
-        }
+
         //创建一个viewModel
         mViewModel  = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
@@ -43,10 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         //点击事件
         clickMe.setOnClickListener{
-
             //提交数据变化
-            mViewModel.content.postValue(MainVo("fuk....you" + tmp))
-
+            mViewModel.content.postValue(MainVo("hey....you" + tmp))
             tmp ++;
         }
 
