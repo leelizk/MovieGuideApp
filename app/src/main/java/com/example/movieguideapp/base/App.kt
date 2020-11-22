@@ -2,16 +2,19 @@ package com.example.movieguideapp.base
 
 import android.app.Application
 import android.util.Log
+import com.example.movieguideapp.base.di.DependencyProvider
 import com.example.movieguideapp.data.local.AlbumDao
 import com.example.movieguideapp.data.local.PhotoDao
 import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.data.model.Photo
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import javax.inject.Inject
 
-class StartApp : Application() {
-    private val TAG:String = StartApp::class.java.simpleName;
+class App : Application() {
+    private val TAG:String = App::class.java.simpleName;
 
     @Inject
     lateinit var photoDao: PhotoDao;
@@ -21,8 +24,19 @@ class StartApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initInjection()
         init()
     }
+
+
+    private fun initInjection() {
+        val dependencyProvider = DependencyProvider()
+        startKoin {
+            androidContext(this@App)
+            modules(dependencyProvider.getModules(this@App))
+        }
+    }
+
 
     //初始化
     fun init(){
