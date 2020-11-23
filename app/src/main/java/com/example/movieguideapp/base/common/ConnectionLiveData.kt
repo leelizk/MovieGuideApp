@@ -33,11 +33,12 @@ class ConnectionLiveData(
 	private val connectivityCallback: ConnectivityManager.NetworkCallback by lazy {
 		@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 		object : ConnectivityManager.NetworkCallback() {
-			override fun onAvailable(network: Network?) {
+
+			 fun onAvailable(network: Network?) {
 				postConnectionStatus(true)
 			}
 
-			override fun onLost(network: Network?) {
+			 fun onLost(network: Network?) {
 				postConnectionStatus(false)
 			}
 		}

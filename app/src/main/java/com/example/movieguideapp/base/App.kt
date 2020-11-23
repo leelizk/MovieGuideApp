@@ -11,15 +11,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import javax.inject.Inject
 
 class App : Application() {
     private val TAG:String = App::class.java.simpleName;
 
-    @Inject
+
     lateinit var photoDao: PhotoDao;
 
-    @Inject
+
     lateinit var albumDao:AlbumDao;
 
     override fun onCreate() {
