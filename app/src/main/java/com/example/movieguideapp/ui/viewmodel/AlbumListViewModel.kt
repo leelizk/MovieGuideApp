@@ -9,7 +9,7 @@ import com.example.movieguideapp.data.vo.AlbumItem
 import kotlin.concurrent.thread
 
 
-class AlbumListViewModel(application: Application): AndroidViewModel(application){
+class AlbumListViewModel(application: Application): BaseViewModel(application){
 
     //动态数据
     private val albumListData: MutableLiveData<List<AlbumItem>> by lazy {

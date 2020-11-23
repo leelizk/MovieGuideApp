@@ -19,10 +19,14 @@ class ConnectionLiveData(
 	@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 	companion object {
 		val CELLULAR_OR_WIFI: NetworkRequest by lazy {
-			NetworkRequest.Builder()
-				.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-				.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-				.build()
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				NetworkRequest.Builder()
+					.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+					.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+					.build()
+			} else {
+				TODO("VERSION.SDK_INT < LOLLIPOP")
+			}
 		}
 	}
 
@@ -34,11 +38,11 @@ class ConnectionLiveData(
 		@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 		object : ConnectivityManager.NetworkCallback() {
 
-			 fun onAvailable(network: Network?) {
+			 override fun onAvailable(network: Network) {
 				postConnectionStatus(true)
 			}
 
-			 fun onLost(network: Network?) {
+			override fun onLost(network: Network) {
 				postConnectionStatus(false)
 			}
 		}

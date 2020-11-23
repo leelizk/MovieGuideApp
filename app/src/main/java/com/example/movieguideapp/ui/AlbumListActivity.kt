@@ -29,7 +29,6 @@ class AlbumListActivity : AppCompatActivity() {
         mBinding=DataBindingUtil.setContentView(this, R.layout.activity_albumlist);
         var list:MutableList<AlbumTwoItem> = mutableListOf();
         initHandler(viewModel = albumListVm)
-
     }
 
     fun initHandler(viewModel: AlbumListViewModel){
