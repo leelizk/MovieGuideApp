@@ -1,40 +1,57 @@
 package com.example.movieguideapp.ui.adapter
 
+import android.R
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.example.movieguideapp.data.vo.AlbumTwoItem
 
 
 class AlbumListAdapter<T>(
-    private val context: Context, private val list: List<T>,
-    private val layoutId: Int, private val variableId: Int
+    private val context: Context
 
-):BaseAdapter(){
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var binding: ViewDataBinding? = null
-        if (convertView == null) {
-            binding = DataBindingUtil.inflate(LayoutInflater.from(context), layoutId, parent, false)
-        } else {
-            binding = DataBindingUtil.getBinding(convertView)
+): RecyclerView.Adapter<AlbumListAdapter.ViewHolder>(){
+
+
+    private val layoutInflater = LayoutInflater.from(context)
+
+    private var items: List<AlbumTwoItem> = emptyList()
+
+
+    fun updateItems(items: List<AlbumTwoItem>) {
+        this.items = items
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val item = items.first { it.layoutId == viewType }
+        return item.createViewHolder(layoutInflater, parent)
+
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(items[position])
+    }
+
+    override fun getItemCount(): Int {
+       return items.size
+    }
+
+
+    abstract class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        abstract fun bind(item: Item)
+    }
+
+    abstract class Item {
+        abstract val layoutId: Int
+        abstract fun provideViewHolder(binding: ViewDataBinding): ViewHolder
+        fun createViewHolder(layoutInflater: LayoutInflater, parent: ViewGroup): ViewHolder {
+            return provideViewHolder(DataBindingUtil.inflate(layoutInflater, layoutId, parent, false))
         }
-        binding!!.setVariable(variableId, list[position])
-        return binding.root
-    }
-
-    override fun getItem(p0: Int): Any {
-       return list[p0]!!
-    }
-
-    override fun getItemId(p0: Int): Long {
-       return p0.toLong()
-    }
-
-    override fun getCount(): Int {
-        return list.size
     }
 
 

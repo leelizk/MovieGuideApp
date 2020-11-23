@@ -13,7 +13,6 @@
                 android:id="@+id/my_album_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:adapter="@{myAdapter}"
                 >
 
             </ListView>

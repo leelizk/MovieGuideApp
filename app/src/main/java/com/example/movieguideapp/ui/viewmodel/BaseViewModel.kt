@@ -13,8 +13,8 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 
 	val disposables = CompositeDisposable()
 
-	//protected val _errorLiveData = MutableLiveData<Throwable>()
-	//val errorLiveData: LiveData<Throwable> = _errorLiveData
+	protected val _errorLiveData = MutableLiveData<Throwable>()
+	val errorLiveData: LiveData<Throwable> = _errorLiveData
 
 	//val connectionLiveData by lazy { ConnectionLiveData(application) }
 

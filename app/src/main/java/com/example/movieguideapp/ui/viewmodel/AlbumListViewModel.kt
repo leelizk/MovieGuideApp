@@ -6,14 +6,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movieguideapp.data.vo.AlbumItem
+import com.example.movieguideapp.data.vo.AlbumTwoItem
 import kotlin.concurrent.thread
 
 
 class AlbumListViewModel(application: Application): BaseViewModel(application){
 
     //动态数据
-    private val albumListData: MutableLiveData<List<AlbumItem>> by lazy {
-        MutableLiveData<List<AlbumItem>>().also {
+    val albumListData: MutableLiveData<List<AlbumTwoItem>> by lazy {
+        MutableLiveData<List<AlbumTwoItem>>().also {
             //加载数据
             loadData()
         }
@@ -23,7 +24,7 @@ class AlbumListViewModel(application: Application): BaseViewModel(application){
     /**
      *  获取数据
      */
-    fun getAlbumListData() : LiveData<List<AlbumItem>> {
+    fun getAlbumListData() : LiveData<List<AlbumTwoItem>> {
         return albumListData
     }
 
@@ -31,10 +32,11 @@ class AlbumListViewModel(application: Application): BaseViewModel(application){
     //加载测试数据
     private fun loadData(){
         thread(start = true) {
-            var list:MutableList<AlbumItem> = mutableListOf<AlbumItem>();
-            for(i in 1..30){
-                val item = AlbumItem(
-                    i,"测试"+i,""
+            var list:MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
+            for(i in 1..10){
+                val item = AlbumTwoItem(
+                    AlbumItem(i,"测试"+i,""),
+                    AlbumItem(i+1,"测试"+(i+1),"")
                 )
 
                 list.add(item)
