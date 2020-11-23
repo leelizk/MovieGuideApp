@@ -48,13 +48,12 @@ class AlbumFragment : BaseFragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-       // return when (item.itemId) {
-           // R.id.refresh -> {
-              //  viewModel.getCountries()
-           //     true
-          //  }
-           // else -> super.onOptionsItemSelected(item)
-       // }
+        return when (item.itemId) { R.id.refresh -> {
+                viewModel.loadData()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+    }
         return false;
     }
 
@@ -64,7 +63,8 @@ class AlbumFragment : BaseFragment() {
         initView()
         initLiveData()
         initErrorHandler(viewModel)
-       // viewModel.onActivityCreated()
+        //加载数据
+        viewModel.onActivityCreated()
     }
 
     private fun initView() {
@@ -72,7 +72,6 @@ class AlbumFragment : BaseFragment() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         val dividerItemDecoration = DividerItemDecoration(binding.recyclerView.context, linearLayoutManager.orientation)
         binding.recyclerView.layoutManager = linearLayoutManager
-
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
         binding.recyclerView.adapter = adapter
     }

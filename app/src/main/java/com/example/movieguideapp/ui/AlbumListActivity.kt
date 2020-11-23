@@ -21,13 +21,12 @@ class AlbumListActivity : AppCompatActivity() {
         val TAG:String = AlbumListActivity::class.java.simpleName;
     }
 
-    lateinit var mBinding:ActivityAlbumlistBinding;
+   // lateinit var mBinding:ActivityAlbumlistBinding;
     private val albumListVm:AlbumListViewModel by viewModel();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding=DataBindingUtil.setContentView(this, R.layout.activity_albumlist);
-        var list:MutableList<AlbumTwoItem> = mutableListOf();
+        //mBinding=DataBindingUtil.setContentView(this, R.layout.fragment_album_list);
         initHandler(viewModel = albumListVm)
     }
 

@@ -20,6 +20,10 @@ class AlbumListViewModel(application: Application): BaseViewModel(application){
         }
     }
 
+    fun onActivityCreated() {
+        loadData();
+    }
+
 
     /**
      *  获取数据
@@ -30,7 +34,7 @@ class AlbumListViewModel(application: Application): BaseViewModel(application){
 
 
     //加载测试数据
-    private fun loadData(){
+    fun loadData(){
         thread(start = true) {
             var list:MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
             for(i in 1..10){
