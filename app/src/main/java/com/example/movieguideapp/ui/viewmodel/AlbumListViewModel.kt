@@ -1,24 +1,19 @@
 package com.example.movieguideapp.ui.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.movieguideapp.data.vo.AlbumItem
 import com.example.movieguideapp.data.vo.AlbumTwoItem
-import kotlin.concurrent.thread
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class AlbumListViewModel(application: Application): BaseViewModel(application){
 
+    private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
     //动态数据
-    val albumListData: MutableLiveData<List<AlbumTwoItem>> by lazy {
-        MutableLiveData<List<AlbumTwoItem>>().also {
-            //加载数据
-            loadData()
-        }
-    }
+    val albumListData: MutableLiveData<List<AlbumTwoItem>> = _albumListData;
 
     fun onActivityCreated() {
         loadData();
@@ -32,22 +27,38 @@ class AlbumListViewModel(application: Application): BaseViewModel(application){
         return albumListData
     }
 
-
+    var myList: List<AlbumItem> = listOf();
     //加载测试数据
     fun loadData(){
-        thread(start = true) {
-            var list:MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
-            for(i in 1..10){
-                val item = AlbumTwoItem(
-                    AlbumItem(i,"测试"+i,""),
-                    AlbumItem(i+1,"测试"+(i+1),"")
-                )
-
+        GlobalScope.launch  {
+            var list:MutableList<AlbumItem> = mutableListOf<AlbumItem>();
+            for(i in 1..11){
+                var item:AlbumItem=AlbumItem(i,"测试"+i,"")
                 list.add(item)
             }
+            myList = list;
             //刷新数据
-            albumListData.postValue(list)
+            _albumListData.postValue(buildItems())
         }
+    }
+
+    private fun buildItems(): List<AlbumTwoItem>{
+
+            var pageSize = 2;
+            var list: MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
+            var size:Int = myList.size;
+            for ((index, str) in list.withIndex()) {
+                var newIndex: Int = index * pageSize;
+                var nextIndex: Int = newIndex.plus(1);
+                var itemOne: AlbumItem? = myList?.get(newIndex);
+                var itemTwo: AlbumItem? = null;
+
+                if (nextIndex < size) {
+                    itemTwo = myList?.get(nextIndex);
+                }
+                list.add(AlbumTwoItem(itemOne, itemTwo))
+            }
+        return list;
     }
 
 

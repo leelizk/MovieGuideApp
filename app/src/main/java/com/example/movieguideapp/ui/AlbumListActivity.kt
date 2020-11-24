@@ -31,13 +31,14 @@ class AlbumListActivity : AppCompatActivity() {
     }
 
     fun initHandler(viewModel: AlbumListViewModel){
-                viewModel.getAlbumListData().observe(this,Observer{its->{
+        viewModel.loadData();
+        /*viewModel.getAlbumListData().observe(this,Observer{its->{
                     Log.d(TAG,"its ===> " + its);
                     var pageSize:Int = 2;
                     its.forEach { one->{
 
                     } }
                 }
-            })
+            })*/
     }
 }
