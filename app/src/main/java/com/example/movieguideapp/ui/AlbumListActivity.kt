@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.movieguideapp.R
 import com.example.movieguideapp.databinding.ActivityAlbumlistBinding
+import com.example.movieguideapp.databinding.FragmentAlbumListBinding
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,17 +22,15 @@ class AlbumListActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     lateinit var binding:ActivityAlbumlistBinding;
-    private val albumListVm:AlbumListViewModel by viewModel();
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this, R.layout.fragment_album_list);
+        binding=DataBindingUtil.setContentView(this, R.layout.activity_albumlist);
         navController = findNavController(R.id.container)
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        initHandler(viewModel = albumListVm)
+        //initHandler(viewModel = albumListVm)
     }
 
     //处理数据
