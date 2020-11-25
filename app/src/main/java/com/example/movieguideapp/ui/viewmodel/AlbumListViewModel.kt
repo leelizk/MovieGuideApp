@@ -47,16 +47,20 @@ class AlbumListViewModel(application: Application): BaseViewModel(application){
             var pageSize = 2;
             var list: MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
             var size:Int = myList.size;
-            for ((index, str) in list.withIndex()) {
-                var newIndex: Int = index * pageSize;
-                var nextIndex: Int = newIndex.plus(1);
-                var itemOne: AlbumItem? = myList?.get(newIndex);
-                var itemTwo: AlbumItem? = null;
+            for ((index, str) in myList.withIndex()) {
 
-                if (nextIndex < size) {
-                    itemTwo = myList?.get(nextIndex);
-                }
-                list.add(AlbumTwoItem(itemOne, itemTwo))
+                    var newIndex: Int = index * pageSize;
+                    var nextIndex: Int = newIndex + 1;
+                    if(newIndex < size) {
+                        var itemOne: AlbumItem? = myList?.get(newIndex);
+                        var itemTwo: AlbumItem? = null;
+
+                        if (nextIndex < size) {
+                            itemTwo = myList?.get(nextIndex);
+                        }
+                        list.add(AlbumTwoItem(itemOne, itemTwo))
+                    }
+
             }
         return list;
     }

@@ -27,6 +27,9 @@ class AlbumListAdapter<T>(
         notifyDataSetChanged()
     }
 
+    override fun getItemViewType(position: Int): Int = items[position].layoutId
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val item = items.first { it.layoutId == viewType }
         return item.createViewHolder(layoutInflater, parent)
