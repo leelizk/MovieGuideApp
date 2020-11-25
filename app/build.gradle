@@ -79,6 +79,12 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
 
 
+    // Navigation
+    implementation "androidx.navigation:navigation-ui-ktx:2.1.0-rc01"
+    implementation "androidx.navigation:navigation-ui:2.1.0-rc01"
+    implementation "androidx.navigation:navigation-fragment:2.1.0-rc01"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.1.0-rc01"
+
 
     //dataBinding
     implementation "androidx.databinding:databinding-runtime:3.5.0"

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/helloAlbum"
+    app:startDestination="@id/albumFragmemt">
+
+    <fragment
+        android:id="@+id/albumFragmemt"
+        android:name="com.example.movieguideapp.ui.fragment.AlbumFragment"
+        android:label="hello album"
+        tools:layout="@layout/fragment_album_list"/>
+
+</navigation>
