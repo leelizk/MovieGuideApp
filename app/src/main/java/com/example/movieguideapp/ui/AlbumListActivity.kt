@@ -21,7 +21,7 @@ class AlbumListActivity : AppCompatActivity() {
         val TAG:String = AlbumListActivity::class.java.simpleName;
     }
 
-   // lateinit var mBinding:ActivityAlbumlistBinding;
+    //lateinit var mBinding:ActivityAlbumlistBinding;
     private val albumListVm:AlbumListViewModel by viewModel();
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,15 +30,8 @@ class AlbumListActivity : AppCompatActivity() {
         initHandler(viewModel = albumListVm)
     }
 
+    //处理数据
     fun initHandler(viewModel: AlbumListViewModel){
         viewModel.loadData();
-        /*viewModel.getAlbumListData().observe(this,Observer{its->{
-                    Log.d(TAG,"its ===> " + its);
-                    var pageSize:Int = 2;
-                    its.forEach { one->{
-
-                    } }
-                }
-            })*/
     }
 }

@@ -17,5 +17,7 @@
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:scrollbars="vertical"
-        tools:itemCount="4" />
+        tools:itemCount="4"
+        tools:listitem="@layout/album_item"
+        />
 </layout>

@@ -23,12 +23,6 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 
 	val app by lazy { getApplication<App>() }
 
-	fun launch(job: () -> Disposable): Disposable {
-		return job().apply {
-			disposables.add(this)
-		}
-	}
-
 	@CallSuper
 	override fun onCleared() {
 		super.onCleared()
@@ -39,10 +33,16 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 	 * Clear error in live data otherwise not cleared value will be posted on subscribe
 	 */
 	fun clearError() {
-		//_errorLiveData.value = null
+		_errorLiveData.value = null
 	}
 
 	companion object {
 		const val ERROR_MESSAGE = "Sorry, something went wrong. Please try again later."
+	}
+
+	fun launch(job: () -> Disposable): Disposable {
+		return job().apply {
+			disposables.add(this)
+		}
 	}
 }
