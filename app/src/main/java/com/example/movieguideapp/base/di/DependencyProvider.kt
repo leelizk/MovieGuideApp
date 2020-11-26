@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.movieguideapp.ui.viewmodel.BaseActivityViewModel
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.common.schedulers.SchedulerProvider
+import com.example.movieguideapp.data.remote.ApiModule.Companion.apiModule
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -24,7 +25,7 @@ class DependencyProvider {
     private val baseModule = module {
         viewModel { BaseActivityViewModel(androidApplication()) }
         //定义新增的viewModel
-        viewModel { AlbumListViewModel(androidApplication()) }
+        viewModel { AlbumListViewModel(androidApplication(),get(),get()) }
     }
 
     private val countryModule = module {
@@ -36,7 +37,7 @@ class DependencyProvider {
     fun getModules(context: Application) = listOf(
         baseModule,
         rxModule,
-       // apiModule,
+        apiModule,
         countryModule
     )
 }

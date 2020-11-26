@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
-	//val disposables = CompositeDisposable()
+	val disposables = CompositeDisposable()
 
 	//这是搞什么飞机
 	protected val _errorLiveData = MutableLiveData<Throwable>()
@@ -29,7 +29,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 	@CallSuper
 	override fun onCleared() {
 		super.onCleared()
-		//disposables.clear()
+		disposables.clear()
 	}
 
 	/**
@@ -47,9 +47,9 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 
 
 	// rxjava 封装请求...?
-	/*fun launch(job: () -> Disposable): Disposable {
+	fun rxLaunch(job: () -> Disposable): Disposable {
 		return job().apply {
 			disposables.add(this)
 		}
-	}*/
+	}
 }
