@@ -25,16 +25,10 @@ class AlbumListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this, R.layout.activity_albumlist);
+        //使用内部控制打开 fragment ???
         navController = findNavController(R.id.container)
         appBarConfiguration = AppBarConfiguration(navController.graph)
-
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        //initHandler(viewModel = albumListVm)
-    }
-
-    //处理数据
-    fun initHandler(viewModel: AlbumListViewModel){
-        viewModel.loadData();
     }
 }

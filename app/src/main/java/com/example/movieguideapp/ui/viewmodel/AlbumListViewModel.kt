@@ -32,7 +32,7 @@ class AlbumListViewModel(application: Application): BaseViewModel(application){
     fun loadData(){
         GlobalScope.launch  {
             var list:MutableList<AlbumItem> = mutableListOf<AlbumItem>();
-            for(i in 1..11){
+            for(i in 1..17){
                 var item:AlbumItem=AlbumItem(i,"测试"+i,"")
                 list.add(item)
             }
@@ -42,6 +42,7 @@ class AlbumListViewModel(application: Application): BaseViewModel(application){
         }
     }
 
+    //恩成 一行两个的显示方式
     private fun buildItems(): List<AlbumTwoItem>{
 
             var pageSize = 2;

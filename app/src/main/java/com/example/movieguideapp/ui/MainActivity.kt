@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
             tmp ++;
         }
 
+
+        //打开 相册列表
         showList.setOnClickListener{
             var intent: Intent = Intent();
             intent.setClass(this,AlbumListActivity::class.java)

@@ -11,14 +11,17 @@ import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
-	val disposables = CompositeDisposable()
+	//val disposables = CompositeDisposable()
 
+	//这是搞什么飞机
 	protected val _errorLiveData = MutableLiveData<Throwable>()
+	//记录错误信息
 	val errorLiveData: LiveData<Throwable> = _errorLiveData
 
+	//暂不需要监听网络
 	//val connectionLiveData by lazy { ConnectionLiveData(application) }
 
-	val albumListViewModel by lazy{ AlbumListViewModel(application) }
+	//val albumListViewModel by lazy{ AlbumListViewModel(application) }
 
 
 	val app by lazy { getApplication<App>() }
@@ -26,7 +29,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 	@CallSuper
 	override fun onCleared() {
 		super.onCleared()
-		disposables.clear()
+		//disposables.clear()
 	}
 
 	/**
@@ -36,13 +39,17 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 		_errorLiveData.value = null
 	}
 
+	//常量
 	companion object {
 		const val ERROR_MESSAGE = "Sorry, something went wrong. Please try again later."
 	}
 
-	fun launch(job: () -> Disposable): Disposable {
+
+
+	// rxjava 封装请求...?
+	/*fun launch(job: () -> Disposable): Disposable {
 		return job().apply {
 			disposables.add(this)
 		}
-	}
+	}*/
 }

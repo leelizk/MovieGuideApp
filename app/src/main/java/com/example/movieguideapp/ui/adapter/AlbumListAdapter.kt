@@ -22,15 +22,20 @@ class AlbumListAdapter<T>(
     private var items: List<AlbumTwoItem> = emptyList()
 
 
+
+    //更新adapter
     fun updateItems(items: List<AlbumTwoItem>) {
         this.items = items
+        //必须
         notifyDataSetChanged()
     }
 
+    // 这是搞什么飞机？？？ itemViewType有什么用?
     override fun getItemViewType(position: Int): Int = items[position].layoutId
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        // 必须实现上面的 getItemViewType
         val item = items.first { it.layoutId == viewType }
         return item.createViewHolder(layoutInflater, parent)
 

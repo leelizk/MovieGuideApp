@@ -44,7 +44,7 @@ class AlbumFragment : BaseFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-       // inflater.inflate(R.menu.refresh, menu)
+        inflater.inflate(R.menu.refresh, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -77,6 +77,7 @@ class AlbumFragment : BaseFragment() {
     }
 
     private fun initLiveData() {
+        //监听数据变化
         viewModel.albumListData.observe(viewLifecycleOwner, Observer { list ->
             adapter.updateItems(list)
         })

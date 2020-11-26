@@ -11,6 +11,9 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import com.example.movieguideapp.base.utils.ConnectionUtils
 
+
+//监听网络变化的数据
+
 class ConnectionLiveData(
 	private val application: Application,
 	private val networkRequest: NetworkRequest = CELLULAR_OR_WIFI
