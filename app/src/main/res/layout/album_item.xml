@@ -9,7 +9,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,6 +25,8 @@
                 android:typeface="monospace"
                 android:textStyle="bold"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:text="@{twoItem.oneItem.itemName}"
                 />
 
@@ -32,8 +34,9 @@
                 android:id="@+id/ab_image1"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
                 android:contentDescription="@null"
+                android:layout_weight="1"
                 android:src="@drawable/ic_launcher_background"/>
         </LinearLayout>
 
@@ -51,6 +54,8 @@
                 android:typeface="monospace"
                 android:textStyle="bold"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:text="@{twoItem.twoItem.itemName}"
                 />
 
@@ -58,8 +63,9 @@
                 android:id="@+id/ab_image2"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
                 android:contentDescription="@null"
+                android:layout_weight="1"
                 android:src="@drawable/ic_launcher_background"/>
 
 
