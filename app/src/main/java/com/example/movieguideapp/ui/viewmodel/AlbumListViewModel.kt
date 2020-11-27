@@ -4,11 +4,11 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
+import com.example.movieguideapp.base.extension.with
 import com.example.movieguideapp.data.local.CountryRepository
 import com.example.movieguideapp.data.model.CountryResource
 import com.example.movieguideapp.data.vo.AlbumItem
 import com.example.movieguideapp.data.vo.AlbumTwoItem
-import com.hinge.countryexplorer.common.extension.with
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,6 +18,10 @@ class AlbumListViewModel(application: Application,
                          private val countryRepository: CountryRepository,
                          private val schedulerProvider: BaseSchedulerProvider
 ): BaseViewModel(application){
+
+    companion object {
+        const val BASE_IMG_URL_250_PX = "https://github.com/hjnilsson/country-flags/blob/master/png250px/"
+    }
 
 
     var countries: List<CountryResource>? = null
@@ -46,7 +50,7 @@ class AlbumListViewModel(application: Application,
                 .subscribeBy(
                     onSuccess = {
                         countries = it
-                        convertItems()
+                        _albumListData.postValue(convertItems())
                     },
                     onError = { _errorLiveData.value = it }
                 )
@@ -72,17 +76,18 @@ class AlbumListViewModel(application: Application,
         var pageSize = 2;
         var list: MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
         var size:Int? = countries?.size;
-        for ((index, str) in countries?.withIndex()!!) {
+        for ((index, cr) in countries?.withIndex()!!) {
 
             var newIndex: Int = index * pageSize;
             var nextIndex: Int = newIndex + 1;
             if(newIndex < size!!) {
                 var tmp:CountryResource? = countries?.get(newIndex);
-                var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.name);
+                var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.name, BASE_IMG_URL_250_PX + tmp?.alpha2Code?.toLowerCase() + ".png?raw=true",);
                 var itemTwo: AlbumItem? = null;
 
                 if (nextIndex < size) {
-                    itemTwo = AlbumItem(nextIndex,countries?.get(nextIndex)?.name);
+                    var tmp2:CountryResource? = countries?.get(nextIndex);
+                    itemTwo = AlbumItem(nextIndex,tmp2?.name,BASE_IMG_URL_250_PX + tmp2?.alpha2Code?.toLowerCase() + ".png?raw=true",);
                 }
                 list.add(AlbumTwoItem(itemOne, itemTwo))
             }

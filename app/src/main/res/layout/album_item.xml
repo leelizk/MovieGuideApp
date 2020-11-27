@@ -37,7 +37,9 @@
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@null"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher_background"/>
+                android:src="@drawable/ic_launcher_background"
+                app:loadImage="@{twoItem.oneItem.imageUrl}"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -66,7 +68,9 @@
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@null"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher_background"/>
+                android:src="@drawable/ic_launcher_background"
+                app:loadImage="@{twoItem.twoItem.imageUrl}"
+                />
 
 
         </LinearLayout>

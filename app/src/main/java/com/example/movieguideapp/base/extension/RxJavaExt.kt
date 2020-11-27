@@ -1,4 +1,4 @@
-package com.hinge.countryexplorer.common.extension
+package com.example.movieguideapp.base.extension
 
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import io.reactivex.Completable

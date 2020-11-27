@@ -1,7 +1,6 @@
 package com.example.movieguideapp.data.remote
 
 import com.example.movieguideapp.BuildConfig
-import com.example.movieguideapp.base.Constants.INSTANCE.BASE_URL
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,6 +13,7 @@ class ApiModule {
 
     companion object {
         val apiModule = ApiModule().provideModules()
+        val BASE_URL = "https://restcountries.eu/rest/v2/";
     }
 
     private fun okHttpClient(): OkHttpClient {
