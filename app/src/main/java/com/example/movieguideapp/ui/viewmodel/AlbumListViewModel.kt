@@ -82,7 +82,10 @@ class AlbumListViewModel(application: Application,
             var nextIndex: Int = newIndex + 1;
             if(newIndex < size!!) {
                 var tmp:CountryResource? = countries?.get(newIndex);
-                var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.name, BASE_IMG_URL_250_PX + tmp?.alpha2Code?.toLowerCase() + ".png?raw=true",);
+                var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.name,
+                    BASE_IMG_URL_250_PX + tmp?.alpha2Code?.toLowerCase() + ".png?raw=true",
+                   // onClick = {onImageItemClick(tmp)}
+                );
                 var itemTwo: AlbumItem? = null;
 
                 if (nextIndex < size) {
@@ -94,6 +97,10 @@ class AlbumListViewModel(application: Application,
 
         }
         return list;
+    }
+
+    private fun onImageItemClick( tmp:CountryResource) {
+
     }
 
     //恩成 一行两个的显示方式

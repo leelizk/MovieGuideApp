@@ -21,8 +21,6 @@ class AlbumListAdapter<T>(
 
     private var items: List<AlbumTwoItem> = emptyList()
 
-
-
     //更新adapter
     fun updateItems(items: List<AlbumTwoItem>) {
         this.items = items

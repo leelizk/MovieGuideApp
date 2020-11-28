@@ -28,6 +28,7 @@
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_vertical"
                 android:text="@{twoItem.oneItem.itemName}"
+                android:onClick="@{()->twoItem.oneItem.onClick.invoke()}"
                 />
 
             <ImageView
@@ -70,6 +71,7 @@
                 android:layout_weight="1"
                 android:src="@drawable/ic_launcher_background"
                 app:loadImage="@{twoItem.twoItem.imageUrl}"
+                android:onClick="@{()->twoItem.oneItem.onClick.invoke()}"
                 />
 
 
