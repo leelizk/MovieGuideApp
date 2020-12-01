@@ -3,6 +3,7 @@ package com.example.movieguideapp.ui.viewmodel
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
 import com.example.movieguideapp.data.local.CountryRepository
@@ -85,7 +86,7 @@ class AlbumListViewModel(application: Application,
                 var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.name,
                     BASE_IMG_URL_250_PX + tmp?.alpha2Code?.toLowerCase() + ".png?raw=true",
                     onClick = {
-
+                       // parentFragment?.findNavController()?.navigate(command.actionId, command.args)
                     }
                 );
                 var itemTwo: AlbumItem? = null;
