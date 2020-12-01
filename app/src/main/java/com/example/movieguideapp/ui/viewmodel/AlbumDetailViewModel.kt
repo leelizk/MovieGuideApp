@@ -1,4 +1,13 @@
 package com.example.movieguideapp.ui.viewmodel
 
-class AlbumDetailViewModel {
+import android.app.Application
+
+class AlbumDetailViewModel(application: Application) : BaseViewModel(application){
+
+
+
+    fun setItemClick(){
+
+    }
+
 }

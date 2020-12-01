@@ -84,13 +84,19 @@ class AlbumListViewModel(application: Application,
                 var tmp:CountryResource? = countries?.get(newIndex);
                 var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.name,
                     BASE_IMG_URL_250_PX + tmp?.alpha2Code?.toLowerCase() + ".png?raw=true",
-                   // onClick = {onImageItemClick(tmp)}
+                    onClick = {
+
+                    }
                 );
                 var itemTwo: AlbumItem? = null;
 
                 if (nextIndex < size) {
                     var tmp2:CountryResource? = countries?.get(nextIndex);
-                    itemTwo = AlbumItem(nextIndex,tmp2?.name,BASE_IMG_URL_250_PX + tmp2?.alpha2Code?.toLowerCase() + ".png?raw=true",);
+                    itemTwo = AlbumItem(nextIndex,tmp2?.name,
+                        BASE_IMG_URL_250_PX + tmp2?.alpha2Code?.toLowerCase() + ".png?raw=true",
+                    onClick = {
+
+                    });
                 }
                 list.add(AlbumTwoItem(itemOne, itemTwo))
             }
