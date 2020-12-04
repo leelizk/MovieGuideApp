@@ -5,12 +5,11 @@ import com.example.movieguideapp.ui.viewmodel.BaseActivityViewModel
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.common.schedulers.SchedulerProvider
 import com.example.movieguideapp.data.local.CountryRepository
-import com.example.movieguideapp.data.remote.ApiModule.Companion.apiModule
+import com.example.movieguideapp.base.di.ApiModule.Companion.apiModule
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import java.text.DecimalFormat
 
 
 /**

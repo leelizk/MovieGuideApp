@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 /**
  * 相册
  */
-@Entity(tableName = "album",)
+@Entity(tableName = "album")
 data class Album(
         @PrimaryKey(autoGenerate = true)
         val id:Int?,

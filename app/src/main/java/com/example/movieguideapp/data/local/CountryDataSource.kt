@@ -1,7 +1,7 @@
 package com.example.movieguideapp.data.local
 
 
-import com.example.movieguideapp.data.model.CountryResource
+import com.example.movieguideapp.ui.vo.CountryResource
 import io.reactivex.Single
 
 interface CountryDataSource {

@@ -7,8 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.movieguideapp.R
-import com.example.movieguideapp.data.vo.AlbumItem
-import com.example.movieguideapp.data.vo.MainVo
+import com.example.movieguideapp.ui.vo.MainVo
 import com.example.movieguideapp.databinding.ActivityMainBinding
 import com.example.movieguideapp.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*

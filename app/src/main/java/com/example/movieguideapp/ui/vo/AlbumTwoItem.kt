@@ -1,4 +1,4 @@
-package com.example.movieguideapp.data.vo
+package com.example.movieguideapp.ui.vo
 
 import androidx.databinding.ViewDataBinding
 import com.example.movieguideapp.databinding.AlbumItemBinding

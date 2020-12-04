@@ -1,6 +1,5 @@
 package com.example.movieguideapp.ui.adapter
 
-import android.R
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movieguideapp.data.vo.AlbumTwoItem
+import com.example.movieguideapp.ui.vo.AlbumTwoItem
 
 
 class AlbumListAdapter<T>(

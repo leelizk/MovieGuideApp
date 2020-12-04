@@ -3,16 +3,13 @@ package com.example.movieguideapp.ui.viewmodel
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.fragment.findNavController
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
 import com.example.movieguideapp.data.local.CountryRepository
-import com.example.movieguideapp.data.model.CountryResource
-import com.example.movieguideapp.data.vo.AlbumItem
-import com.example.movieguideapp.data.vo.AlbumTwoItem
+import com.example.movieguideapp.ui.vo.CountryResource
+import com.example.movieguideapp.ui.vo.AlbumItem
+import com.example.movieguideapp.ui.vo.AlbumTwoItem
 import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class AlbumListViewModel(application: Application,
@@ -82,7 +79,7 @@ class AlbumListViewModel(application: Application,
             var newIndex: Int = index * pageSize;
             var nextIndex: Int = newIndex + 1;
             if(newIndex < size!!) {
-                var tmp:CountryResource? = countries?.get(newIndex);
+                var tmp: CountryResource? = countries?.get(newIndex);
                 var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.name,
                     BASE_IMG_URL_250_PX + tmp?.alpha2Code?.toLowerCase() + ".png?raw=true",
                     onClick = {
@@ -92,7 +89,7 @@ class AlbumListViewModel(application: Application,
                 var itemTwo: AlbumItem? = null;
 
                 if (nextIndex < size) {
-                    var tmp2:CountryResource? = countries?.get(nextIndex);
+                    var tmp2: CountryResource? = countries?.get(nextIndex);
                     itemTwo = AlbumItem(nextIndex,tmp2?.name,
                         BASE_IMG_URL_250_PX + tmp2?.alpha2Code?.toLowerCase() + ".png?raw=true",
                     onClick = {
@@ -106,7 +103,7 @@ class AlbumListViewModel(application: Application,
         return list;
     }
 
-    private fun onImageItemClick( tmp:CountryResource) {
+    private fun onImageItemClick( tmp: CountryResource) {
 
     }
 

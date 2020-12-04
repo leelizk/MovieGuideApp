@@ -14,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
-import com.example.movieguideapp.data.vo.AlbumTwoItem
+import com.example.movieguideapp.ui.vo.AlbumTwoItem
 import com.example.movieguideapp.databinding.FragmentAlbumListBinding
 import com.example.movieguideapp.ui.adapter.AlbumListAdapter
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel

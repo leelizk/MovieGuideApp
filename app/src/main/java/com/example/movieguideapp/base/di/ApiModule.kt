@@ -1,6 +1,7 @@
-package com.example.movieguideapp.data.remote
+package com.example.movieguideapp.base.di
 
 import com.example.movieguideapp.BuildConfig
+import com.example.movieguideapp.data.remote.CountryApiService
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

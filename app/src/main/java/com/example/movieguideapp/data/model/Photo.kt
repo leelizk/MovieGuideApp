@@ -8,12 +8,12 @@ import androidx.room.PrimaryKey
 data class Photo(
     @PrimaryKey(autoGenerate = true)
     val id:Int?,
-    @ColumnInfo(name = "album_id")
+    @ColumnInfo(name = "albumId")
     val albumId: Int,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "url")
     val url: String,
-    @ColumnInfo(name = "thumbnail_url")
+    @ColumnInfo(name = "thumbnailUrl")
     val thumbnailUrl: String
 )
