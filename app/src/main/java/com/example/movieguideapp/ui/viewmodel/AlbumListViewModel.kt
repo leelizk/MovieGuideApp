@@ -7,6 +7,7 @@ import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
 import com.example.movieguideapp.data.local.AlbumDao
 import com.example.movieguideapp.data.local.CountryRepository
+import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.data.remote.AlbumApi
 import com.example.movieguideapp.ui.vo.CountryResource
 import com.example.movieguideapp.ui.vo.AlbumItem
@@ -25,6 +26,7 @@ class AlbumListViewModel(application: Application,
 
 
     var countries: List<CountryResource>? = null
+    var albums: List<Album>? = null;
     private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
     //动态数据
     val albumListData: MutableLiveData<List<AlbumTwoItem>> = _albumListData;
@@ -46,11 +48,11 @@ class AlbumListViewModel(application: Application,
     fun loadData(){
         rxLaunch {
             //?
-            albumApi.getAll().
+            albumApi.getAll()
                     .with(schedulerProvider)
                     .subscribeBy(
                             onSuccess = {
-                                countries = it
+                                albums = it
                                 _albumListData.postValue(convertItems())
                             },
                             onError = { _errorLiveData.value = it }
