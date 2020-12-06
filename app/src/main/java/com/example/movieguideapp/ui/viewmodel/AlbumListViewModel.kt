@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
+import com.example.movieguideapp.data.local.AlbumDao
 import com.example.movieguideapp.data.local.CountryRepository
+import com.example.movieguideapp.data.remote.AlbumApi
 import com.example.movieguideapp.ui.vo.CountryResource
 import com.example.movieguideapp.ui.vo.AlbumItem
 import com.example.movieguideapp.ui.vo.AlbumTwoItem
@@ -13,7 +15,7 @@ import io.reactivex.rxkotlin.subscribeBy
 
 
 class AlbumListViewModel(application: Application,
-                         private val countryRepository: CountryRepository,
+                         private val albumApi: AlbumApi,
                          private val schedulerProvider: BaseSchedulerProvider
 ): BaseViewModel(application){
 
@@ -43,7 +45,17 @@ class AlbumListViewModel(application: Application,
     //加载测试数据
     fun loadData(){
         rxLaunch {
-            countryRepository.getCountries()
+            //?
+            albumApi.getAll().
+                    .with(schedulerProvider)
+                    .subscribeBy(
+                            onSuccess = {
+                                countries = it
+                                _albumListData.postValue(convertItems())
+                            },
+                            onError = { _errorLiveData.value = it }
+                    )
+           /* countryRepository.getCountries()
                 .with(schedulerProvider)
                 .subscribeBy(
                     onSuccess = {
@@ -51,7 +63,8 @@ class AlbumListViewModel(application: Application,
                         _albumListData.postValue(convertItems())
                     },
                     onError = { _errorLiveData.value = it }
-                )
+                )*/
+
         }
         /*GlobalScope.launch  {
 

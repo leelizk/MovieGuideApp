@@ -14,7 +14,7 @@ interface PhotoDao {
     @Insert(onConflict = REPLACE)
     suspend fun insertAll(photos: List<Photo>)
 
-    @Query("Delete from photo where albumId = :albumId")
+    @Query("delete from photo where albumId = :albumId")
     fun deleteByAlbumId(albumId: Int?)
 
     @Delete

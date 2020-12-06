@@ -21,9 +21,6 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 	//暂不需要监听网络
 	//val connectionLiveData by lazy { ConnectionLiveData(application) }
 
-	//val albumListViewModel by lazy{ AlbumListViewModel(application) }
-
-
 	val app by lazy { getApplication<App>() }
 
 	@CallSuper

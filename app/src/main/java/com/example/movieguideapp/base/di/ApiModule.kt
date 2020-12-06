@@ -1,6 +1,7 @@
 package com.example.movieguideapp.base.di
 
 import com.example.movieguideapp.BuildConfig
+import com.example.movieguideapp.data.remote.AlbumApi
 import com.example.movieguideapp.data.remote.CountryApiService
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
@@ -14,7 +15,6 @@ class ApiModule {
 
     companion object {
         val apiModule = ApiModule().provideModules()
-        val BASE_URL = "https://restcountries.eu/rest/v2/";
     }
 
     private fun okHttpClient(): OkHttpClient {
@@ -36,11 +36,16 @@ class ApiModule {
         return retrofit.create(CountryApiService::class.java)
     }
 
+    private fun provideAlbumApiService(retrofit: Retrofit):AlbumApi{
+        return retrofit.create(AlbumApi::class.java);
+    }
+
     fun provideModules() = module {
         single { Gson() }
         single { okHttpClient() }
         single { retrofit(get()) }
         single { provideCountryApiService(get()) }
+        single { provideAlbumApiService(get()) }
     }
 
     private fun OkHttpClient.Builder.enableLoggingIfNeeded() {

@@ -26,6 +26,10 @@ class DependencyProvider {
     private val baseModule = module {
         single { CountryRepository(get()) }
         viewModel { BaseActivityViewModel(androidApplication()) }
+    }
+
+
+    private val albumListViewModel = module{
         //定义新增的viewModel
         viewModel { AlbumListViewModel(androidApplication(),get(),get()) }
     }
@@ -40,6 +44,6 @@ class DependencyProvider {
         baseModule,
         rxModule,
         apiModule,
-       // countryModule
+        albumListViewModel,
     )
 }
