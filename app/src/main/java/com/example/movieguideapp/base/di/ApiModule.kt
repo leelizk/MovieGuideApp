@@ -15,6 +15,7 @@ class ApiModule {
 
     companion object {
         val apiModule = ApiModule().provideModules()
+        const val BASE_URL = "";
     }
 
     private fun okHttpClient(): OkHttpClient {
@@ -44,7 +45,6 @@ class ApiModule {
         single { Gson() }
         single { okHttpClient() }
         single { retrofit(get()) }
-        single { provideCountryApiService(get()) }
         single { provideAlbumApiService(get()) }
     }
 

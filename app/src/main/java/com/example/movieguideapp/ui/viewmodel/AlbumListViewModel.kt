@@ -5,13 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
-import com.example.movieguideapp.data.local.AlbumDao
-import com.example.movieguideapp.data.local.CountryRepository
 import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.data.remote.AlbumApi
-import com.example.movieguideapp.ui.vo.CountryResource
 import com.example.movieguideapp.ui.vo.AlbumItem
 import com.example.movieguideapp.ui.vo.AlbumTwoItem
+import com.example.movieguideapp.ui.vo.CountryResource
 import io.reactivex.rxkotlin.subscribeBy
 
 
@@ -24,9 +22,7 @@ class AlbumListViewModel(application: Application,
         const val BASE_IMG_URL_250_PX = "https://github.com/hjnilsson/country-flags/blob/master/png250px/"
     }
 
-
-    var countries: List<CountryResource>? = null
-    var albums: List<Album>? = null;
+    var albums: MutableList<Album>? = mutableListOf();
     private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
     //动态数据
     val albumListData: MutableLiveData<List<AlbumTwoItem>> = _albumListData;
@@ -57,15 +53,6 @@ class AlbumListViewModel(application: Application,
                             },
                             onError = { _errorLiveData.value = it }
                     )
-           /* countryRepository.getCountries()
-                .with(schedulerProvider)
-                .subscribeBy(
-                    onSuccess = {
-                        countries = it
-                        _albumListData.postValue(convertItems())
-                    },
-                    onError = { _errorLiveData.value = it }
-                )*/
 
         }
         /*GlobalScope.launch  {
@@ -88,15 +75,15 @@ class AlbumListViewModel(application: Application,
     private fun convertItems():List<AlbumTwoItem>{
         var pageSize = 2;
         var list: MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
-        var size:Int? = countries?.size;
-        for ((index, cr) in countries?.withIndex()!!) {
+        var size:Int? = albums?.size;
+        for ((index, cr) in albums?.withIndex()!!) {
 
             var newIndex: Int = index * pageSize;
             var nextIndex: Int = newIndex + 1;
             if(newIndex < size!!) {
-                var tmp: CountryResource? = countries?.get(newIndex);
-                var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.name,
-                    BASE_IMG_URL_250_PX + tmp?.alpha2Code?.toLowerCase() + ".png?raw=true",
+                var tmp: Album? = albums?.get(newIndex);
+                var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.title,
+                    tmp?.remark,
                     onClick = {
                        // parentFragment?.findNavController()?.navigate(command.actionId, command.args)
                     }
@@ -104,9 +91,9 @@ class AlbumListViewModel(application: Application,
                 var itemTwo: AlbumItem? = null;
 
                 if (nextIndex < size) {
-                    var tmp2: CountryResource? = countries?.get(nextIndex);
-                    itemTwo = AlbumItem(nextIndex,tmp2?.name,
-                        BASE_IMG_URL_250_PX + tmp2?.alpha2Code?.toLowerCase() + ".png?raw=true",
+                    var tmp2: Album? = albums?.get(nextIndex);
+                    itemTwo = AlbumItem(nextIndex,tmp2?.title,
+                        tmp2?.remark,
                     onClick = {
 
                     });

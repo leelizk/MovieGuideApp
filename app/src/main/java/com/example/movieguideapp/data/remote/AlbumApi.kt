@@ -8,5 +8,5 @@ import retrofit2.http.GET
 interface AlbumApi {
 
     @GET("all")
-    fun getAll(): Single<List<Album>>
+    fun getAll(): Single<MutableList<Album>>
 }
