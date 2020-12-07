@@ -1,6 +1,8 @@
 package com.example.movieguideapp.base.di
 
+import android.app.Application
 import com.example.movieguideapp.BuildConfig
+import com.example.movieguideapp.base.AppDatabaseProvider
 import com.example.movieguideapp.data.remote.AlbumApi
 import com.example.movieguideapp.data.remote.CountryApiService
 import com.google.gson.Gson
@@ -15,6 +17,8 @@ class ApiModule {
 
     companion object {
         val apiModule = ApiModule().provideModules()
+        val albumDao = AppDatabaseProvider(Application()).provideAppDataBase().albumDao();
+        val photoDao = AppDatabaseProvider(Application()).provideAppDataBase().photoDao();
         const val BASE_URL = "";
     }
 
@@ -33,9 +37,9 @@ class ApiModule {
             .build()
     }
 
-    private fun provideCountryApiService(retrofit: Retrofit): CountryApiService {
+    /*private fun provideCountryApiService(retrofit: Retrofit): CountryApiService {
         return retrofit.create(CountryApiService::class.java)
-    }
+    }*/
 
     private fun provideAlbumApiService(retrofit: Retrofit):AlbumApi{
         return retrofit.create(AlbumApi::class.java);

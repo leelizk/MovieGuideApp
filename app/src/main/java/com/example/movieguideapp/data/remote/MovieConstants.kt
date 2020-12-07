@@ -11,7 +11,14 @@ class MovieConstants {
         const val SESSION_NEW_V4 = "/authentication/session/convert/4"
         const val TOKEN_NEW = "/authentication/token/new"
 
+        const val API_KEY = "c70e7139a4a0d7295d75c4d1394cbbe1"
+        const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzBlNzEzOWE0YTBkNzI5NWQ3NWM0ZDEzOTRjYmJlMSIsInN1YiI6IjVmY2M5MGJjZTMyOTQzMDAzZDNmYjUxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oP6rZeuKJezPtNn-q1KrRp9ZABxYfcRYVuM-dzeTh5Y"
+
         //官方电影分级？
         const val OFFICIAL_LIST = "/certification/movie/list"
+
+        //https://github.com/holgerbrandl/themoviedbapi/
+
+        //https://github.com/Omertron/api-themoviedb/
     }
 }

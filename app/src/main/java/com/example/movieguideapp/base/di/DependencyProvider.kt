@@ -6,6 +6,7 @@ import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.common.schedulers.SchedulerProvider
 import com.example.movieguideapp.data.local.CountryRepository
 import com.example.movieguideapp.base.di.ApiModule.Companion.apiModule
+import com.example.movieguideapp.data.local.impl.AlbumDaoImpl
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -26,6 +27,10 @@ class DependencyProvider {
     private val baseModule = module {
         single { CountryRepository(get()) }
         viewModel { BaseActivityViewModel(androidApplication()) }
+    }
+
+    private val AlbumModule = module {
+        single { AlbumDaoImpl(get(),get(),get()) }
     }
 
 
