@@ -9,7 +9,7 @@ import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.data.model.Photo
 
 
-@Database(entities = arrayOf(Photo::class, Album::class), version = 1,exportSchema = false) // 定义版本号，便于升级管理
+@Database(entities = arrayOf(Photo::class, Album::class), version = 2,exportSchema = false) // 定义版本号，便于升级管理
 abstract class AppDatabase : RoomDatabase() {
     // 获取DAO
     abstract fun albumDao(): AlbumDao

@@ -17,8 +17,6 @@ class ApiModule {
 
     companion object {
         val apiModule = ApiModule().provideModules()
-        val albumDao = AppDatabaseProvider(Application()).provideAppDataBase().albumDao();
-        val photoDao = AppDatabaseProvider(Application()).provideAppDataBase().photoDao();
         const val BASE_URL = "";
     }
 

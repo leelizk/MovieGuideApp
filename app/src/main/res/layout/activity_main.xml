@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
     <data>
         <variable
             name="mainViewModel"
             type="com.example.movieguideapp.ui.viewmodel.MainViewModel" />
-    </data>
+    </data>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +14,7 @@
         >
         <TextView
             android:id="@+id/text"
-            android:text="@{mainViewModel.content.text}"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_weight="1"

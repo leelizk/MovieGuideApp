@@ -1,6 +1,7 @@
 package com.example.movieguideapp.base.di
 
 import android.app.Application
+import com.example.movieguideapp.base.AppDatabaseProvider
 import com.example.movieguideapp.ui.viewmodel.BaseActivityViewModel
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.common.schedulers.SchedulerProvider
@@ -29,8 +30,13 @@ class DependencyProvider {
         viewModel { BaseActivityViewModel(androidApplication()) }
     }
 
-    private val AlbumModule = module {
+    private val albumModule = module {
         single { AlbumDaoImpl(get(),get(),get()) }
+    }
+
+    private val daoModule = module{
+        single{AppDatabaseProvider(androidApplication()).provideAppDataBase().albumDao()}
+        single{AppDatabaseProvider(androidApplication()).provideAppDataBase().photoDao()}
     }
 
 
@@ -49,6 +55,8 @@ class DependencyProvider {
         baseModule,
         rxModule,
         apiModule,
+        daoModule,
+        albumModule,
         albumListViewModel,
     )
 }

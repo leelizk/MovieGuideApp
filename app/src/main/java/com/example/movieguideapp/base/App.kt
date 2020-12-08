@@ -47,7 +47,7 @@ class App : Application() {
 
                 var albumList:MutableList<Album> = mutableListOf();
 
-                var album:Album = Album(1,"相册"+1,"我的","试试","2020-11-20",1,"lizk");
+                var album:Album = Album(1,"相册"+1,"我的","试试","2020-11-20",1,"lizk","");
                 albumList.add(album);
 
                 GlobalScope.launch {

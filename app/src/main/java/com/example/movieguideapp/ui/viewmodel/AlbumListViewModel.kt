@@ -94,7 +94,7 @@ class AlbumListViewModel(application: Application,
                 "",
                 0,
                 it.id.toString(),
-                it.posterPath,
+                BASE_IMG_W500_PREFIX+it.posterPath,
             )
             list.add(album)
         }
@@ -113,7 +113,7 @@ class AlbumListViewModel(application: Application,
             if(newIndex < size!!) {
                 var tmp: Album? = albums?.get(newIndex);
                 var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.title,
-                    tmp?.remark,
+                    tmp?.poster,
                     onClick = {
                        // parentFragment?.findNavController()?.navigate(command.actionId, command.args)
                     }
@@ -123,7 +123,7 @@ class AlbumListViewModel(application: Application,
                 if (nextIndex < size) {
                     var tmp2: Album? = albums?.get(nextIndex);
                     itemTwo = AlbumItem(nextIndex,tmp2?.title,
-                        tmp2?.remark,
+                        tmp2?.poster,
                     onClick = {
 
                     });
@@ -135,9 +135,6 @@ class AlbumListViewModel(application: Application,
         return list;
     }
 
-    private fun onImageItemClick( tmp: CountryResource) {
-
-    }
 
     //恩成 一行两个的显示方式
     private fun buildItems(): List<AlbumTwoItem>{
