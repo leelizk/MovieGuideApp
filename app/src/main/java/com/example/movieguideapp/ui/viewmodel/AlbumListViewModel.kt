@@ -23,6 +23,10 @@ class AlbumListViewModel(application: Application,
 
     companion object {
         const val BASE_IMG_URL_250_PX = "https://github.com/hjnilsson/country-flags/blob/master/png250px/"
+
+        //w500/original can replace
+        //filetype .jpg,.png, .svg
+        const val BASE_IMG_W500_PREFIX = "https://image.tmdb.org/t/p/w500/";
     }
 
     var albums: MutableList<Album>? = mutableListOf();
