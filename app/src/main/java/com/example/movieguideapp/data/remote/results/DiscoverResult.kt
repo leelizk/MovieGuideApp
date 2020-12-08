@@ -1,5 +1,7 @@
 package com.example.movieguideapp.data.remote.results
 
+import com.google.gson.annotations.SerializedName
+
 /**
  * {
 "page": 1,
@@ -414,5 +416,17 @@ package com.example.movieguideapp.data.remote.results
 }
  */
 
-class DiscoverResult {
-}
+data class DiscoverResult(
+        @field:SerializedName("id")
+        private val id:Long?,
+        @field:SerializedName("title")
+        private val title:String?,
+        @field:SerializedName("original_title")
+        private val originalTitle:String?,
+        @field:SerializedName("poster_path")
+        private val posterPath:String?,
+        @field:SerializedName("overview")
+        private val overview:String?,
+        @field:SerializedName("release_date")
+        private val releaseDate:String?
+)
