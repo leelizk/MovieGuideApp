@@ -22,5 +22,7 @@ data class Album(
         @ColumnInfo(name = "ownerId")
         val ownerId:Int,
         @ColumnInfo(name = "outId")
-        val outId:String?
+        val outId:String?,
+        @ColumnInfo(name = "poster")
+        val poster:String?
 )

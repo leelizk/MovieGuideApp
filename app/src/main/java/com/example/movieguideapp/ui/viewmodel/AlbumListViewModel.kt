@@ -7,6 +7,9 @@ import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
 import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.data.remote.AlbumApi
+import com.example.movieguideapp.data.remote.MovieConstants
+import com.example.movieguideapp.data.remote.results.DiscoverResult
+import com.example.movieguideapp.data.remote.results.Page
 import com.example.movieguideapp.ui.vo.AlbumItem
 import com.example.movieguideapp.ui.vo.AlbumTwoItem
 import com.example.movieguideapp.ui.vo.CountryResource
@@ -23,6 +26,7 @@ class AlbumListViewModel(application: Application,
     }
 
     var albums: MutableList<Album>? = mutableListOf();
+    var page: Page<DiscoverResult>? = null;
     private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
     //动态数据
     val albumListData: MutableLiveData<List<AlbumTwoItem>> = _albumListData;
@@ -43,12 +47,13 @@ class AlbumListViewModel(application: Application,
     //加载测试数据
     fun loadData(){
         rxLaunch {
-            //?
-            albumApi.getAll()
+            var params: Map<String, String> = mapOf<String,String>();
+            albumApi.popluarPage(MovieConstants.API_KEY,params)
                     .with(schedulerProvider)
                     .subscribeBy(
                             onSuccess = {
-                                albums = it
+                                page = it
+                                convertPage();
                                 _albumListData.postValue(convertItems())
                             },
                             onError = { _errorLiveData.value = it }
@@ -70,6 +75,27 @@ class AlbumListViewModel(application: Application,
             //刷新数据
             _albumListData.postValue(buildItems())
         }*/
+    }
+
+
+    private fun convertPage():List<Album>{
+        var list: MutableList<Album> = mutableListOf<Album>();
+
+        page?.results?.forEach {
+            var album:Album=Album(
+                it?.id.let { 1 },
+                it?.title.let { "" },
+                "",
+                "",
+                "",
+                0,
+                it.id.toString(),
+                it.posterPath,
+            )
+            list.add(album)
+        }
+
+        return list.toList();
     }
 
     private fun convertItems():List<AlbumTwoItem>{
