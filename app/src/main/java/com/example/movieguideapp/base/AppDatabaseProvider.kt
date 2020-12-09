@@ -9,7 +9,7 @@ class AppDatabaseProvider(
 
 	//定义数据库文件名称
 	companion object {
-		private const val DB_NAME = "mytest1.db"
+		private const val DB_NAME = "mytest2.db"
 	}
 
 	//获取数据库引用

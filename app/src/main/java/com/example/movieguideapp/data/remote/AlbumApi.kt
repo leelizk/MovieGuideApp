@@ -12,7 +12,7 @@ import retrofit2.http.QueryMap
 interface AlbumApi {
 
     //流行电影列表
-    @GET("/discover/movie?sort_by=popularity.desc")
+    @GET("discover/movie?sort_by=popularity.desc")
     fun popluarPage(@Query("api_key")token: String, @QueryMap body: Map<String, String>):Single<Page<DiscoverResult>>
 
 }

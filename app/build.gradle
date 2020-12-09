@@ -24,7 +24,7 @@ android {
 
     buildTypes {
         debug{
-            buildConfigField("String", "BASE_URL", '"https://restcountries.eu/rest/v2/"')
+            buildConfigField("String", "BASE_URL", '"https://api.themoviedb.org/3/"')
         }
         release {
             minifyEnabled false
