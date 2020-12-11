@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
        // mViewModel  = ViewModelProviders.of(this).get(AlbumListViewModel::class.java)
 
         // fetch data
-        mViewModel.loadData()
+        mViewModel.loadDataByDao()
 
         //print data
         print(mViewModel.getAlbumListData())

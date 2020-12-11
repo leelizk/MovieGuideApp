@@ -21,7 +21,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         initInjection()
-        init()
+       // init()
     }
 
 
@@ -35,7 +35,7 @@ class App : Application() {
 
 
     //初始化
-    fun init(){
+    /*fun init(){
         Log.d(TAG,"init...fake data")
         //初始化数据库 or something else here
         albumDao = AppDatabaseProvider(this).provideAppDataBase().albumDao();
@@ -68,7 +68,7 @@ class App : Application() {
             }
         }
 
-    }
+    }*/
 
 
 }

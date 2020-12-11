@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
+import com.example.movieguideapp.data.local.impl.AlbumDaoImpl
 import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.data.remote.AlbumApi
 import com.example.movieguideapp.data.remote.MovieConstants
@@ -15,9 +16,13 @@ import com.example.movieguideapp.ui.vo.AlbumItem
 import com.example.movieguideapp.ui.vo.AlbumTwoItem
 import com.example.movieguideapp.ui.vo.CountryResource
 import io.reactivex.rxkotlin.subscribeBy
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class AlbumListViewModel(application: Application,
+                         private val albumDaoImpl: AlbumDaoImpl,
                          private val albumApi: AlbumApi,
                          private val schedulerProvider: BaseSchedulerProvider
 ): BaseViewModel(application){
@@ -46,6 +51,15 @@ class AlbumListViewModel(application: Application,
      */
     fun getAlbumListData() : LiveData<List<AlbumTwoItem>> {
         return albumListData
+    }
+
+    fun loadDataByDao(){
+        GlobalScope.launch(Dispatchers.IO) {
+            var params:HashMap<String,String> = hashMapOf();
+            albums = albumDaoImpl.getAll(true,params).toMutableList();
+            _albumListData.postValue(convertItems())
+        }
+
     }
 
     var myList: List<AlbumItem> = listOf();

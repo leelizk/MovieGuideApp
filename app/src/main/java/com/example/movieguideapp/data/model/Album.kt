@@ -12,15 +12,15 @@ data class Album(
         @PrimaryKey(autoGenerate = true)
         val id:Int?,
         @ColumnInfo(name = "title")
-        val title: String="",
+        val title: String?,
         @ColumnInfo(name = "category")
-        val category: String="",
+        val category:String?,
         @ColumnInfo(name = "remark")
-        val remark:String="",
+        val remark:String?,
         @ColumnInfo(name = "createDate")
-        val createDate: String="",
+        val createDate: String?,
         @ColumnInfo(name = "ownerId")
-        val ownerId:Int,
+        val ownerId:Int?,
         @ColumnInfo(name = "outId")
         val outId:String?,
         @ColumnInfo(name = "poster")

@@ -42,7 +42,7 @@ class DependencyProvider {
 
     private val albumListViewModel = module{
         //定义新增的viewModel
-        viewModel { AlbumListViewModel(androidApplication(),get(),get()) }
+        viewModel { AlbumListViewModel(androidApplication(),get(),get(),get()) }
     }
 
     /*private val countryModule = module {
