@@ -1,6 +1,7 @@
 package com.example.movieguideapp.ui.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
@@ -50,19 +51,24 @@ class AlbumListViewModel(application: Application,
     var myList: List<AlbumItem> = listOf();
     //加载测试数据
     fun loadData(){
-        rxLaunch {
-            var params: Map<String, String> = mapOf<String,String>();
-            albumApi.popluarPage(MovieConstants.API_KEY,params)
+        try {
+            rxLaunch {
+                var params: Map<String, String> = mapOf<String, String>();
+                albumApi.popluarPage(MovieConstants.API_KEY, params)
                     .with(schedulerProvider)
                     .subscribeBy(
-                            onSuccess = {
-                                page = it
-                                convertPage();
-                                _albumListData.postValue(convertItems())
-                            },
-                            onError = { _errorLiveData.value = it }
+                        onSuccess = {
+                            page = it
+                            convertPage();
+                            _albumListData.postValue(convertItems())
+                        },
+                        onError = { _errorLiveData.value = it }
                     )
 
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+            Log.i("Exception==", e.message.toString())
         }
         /*GlobalScope.launch  {
 
