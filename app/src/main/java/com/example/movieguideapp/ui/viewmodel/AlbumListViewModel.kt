@@ -56,7 +56,12 @@ class AlbumListViewModel(application: Application,
     fun loadDataByDao(){
         GlobalScope.launch(Dispatchers.IO) {
             var params:HashMap<String,String> = hashMapOf();
-            albumDaoImpl.getAll(false,params)
+
+            //TODO it will crash when then request fail ??
+            /*
+             * java.net.SocketTimeoutException: failed to connect to api.themoviedb.org/2001:
+            **/
+            albumDaoImpl.getAll(true,params)
                     .with(schedulerProvider)
                     .subscribeBy (
                         onSuccess = {

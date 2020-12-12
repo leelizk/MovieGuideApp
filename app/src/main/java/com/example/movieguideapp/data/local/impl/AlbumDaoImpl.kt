@@ -28,6 +28,8 @@ class AlbumDaoImpl(
     var page: Page<DiscoverResult>? = null;
      fun getAll(force:Boolean,params:Map<String,String>): Single<List<Album>> {
         if(force){
+
+            //TODO sync request ??
             page = albumApi.popluarPage(MovieConstants.API_KEY, params)
                     .with(schedulerProvider)
                    .blockingGet()
