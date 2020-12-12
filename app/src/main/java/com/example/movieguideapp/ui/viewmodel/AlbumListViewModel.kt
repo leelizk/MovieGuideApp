@@ -35,7 +35,7 @@ class AlbumListViewModel(application: Application,
         const val BASE_IMG_W500_PREFIX = "https://image.tmdb.org/t/p/w500/";
     }
 
-    var albums: MutableList<Album>? = mutableListOf();
+    var albums: List<Album>? = listOf();
     var page: Page<DiscoverResult>? = null;
     private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
     //动态数据
@@ -56,8 +56,18 @@ class AlbumListViewModel(application: Application,
     fun loadDataByDao(){
         GlobalScope.launch(Dispatchers.IO) {
             var params:HashMap<String,String> = hashMapOf();
-            albums = albumDaoImpl.getAll(true,params).toMutableList();
-            _albumListData.postValue(convertItems())
+            albumDaoImpl.getAll(false,params)
+                    .with(schedulerProvider)
+                    .subscribeBy (
+                        onSuccess = {
+                            albums = it;
+                            _albumListData.postValue(convertItems())
+                        },
+                        onError = {
+                            _errorLiveData.value = it
+                        }
+                    )
+
         }
 
     }

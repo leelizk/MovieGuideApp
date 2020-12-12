@@ -1,6 +1,7 @@
 package com.example.movieguideapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
@@ -19,8 +20,6 @@ class MainActivity : AppCompatActivity() {
         // fetch data
         mViewModel.loadDataByDao()
 
-        //print data
-        print(mViewModel.getAlbumListData())
 
     }
 
