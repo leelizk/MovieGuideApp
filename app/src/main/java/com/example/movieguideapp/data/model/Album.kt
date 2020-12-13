@@ -10,19 +10,19 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "album")
 data class Album(
         @PrimaryKey(autoGenerate = true)
-        val id:Int?,
+        val id:Long? = null,
         @ColumnInfo(name = "title")
-        val title: String?,
+        val title: String? = null,
         @ColumnInfo(name = "category")
-        val category:String?,
+        val category:String? = null,
         @ColumnInfo(name = "remark")
-        val remark:String?,
+        val remark:String? = null,
         @ColumnInfo(name = "createDate")
-        val createDate: String?,
+        val createDate: String? = null,
         @ColumnInfo(name = "ownerId")
-        val ownerId:Int?,
+        val ownerId:Int? = null,
         @ColumnInfo(name = "outId")
-        val outId:String?,
+        val outId:String? = null,
         @ColumnInfo(name = "poster")
-        val poster:String?
+        val poster:String? = null
 )

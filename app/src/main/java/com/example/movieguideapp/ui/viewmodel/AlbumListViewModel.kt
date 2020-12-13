@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
-import com.example.movieguideapp.data.local.impl.AlbumDaoImpl
+import com.example.movieguideapp.data.AlbumRepository
 import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.data.remote.AlbumApi
 import com.example.movieguideapp.data.remote.MovieConstants
@@ -14,7 +14,6 @@ import com.example.movieguideapp.data.remote.results.DiscoverResult
 import com.example.movieguideapp.data.remote.results.Page
 import com.example.movieguideapp.ui.vo.AlbumItem
 import com.example.movieguideapp.ui.vo.AlbumTwoItem
-import com.example.movieguideapp.ui.vo.CountryResource
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -22,8 +21,7 @@ import kotlinx.coroutines.launch
 
 
 class AlbumListViewModel(application: Application,
-                         private val albumDaoImpl: AlbumDaoImpl,
-                         private val albumApi: AlbumApi,
+                         private val albumRepository: AlbumRepository,
                          private val schedulerProvider: BaseSchedulerProvider
 ): BaseViewModel(application){
 
@@ -36,7 +34,6 @@ class AlbumListViewModel(application: Application,
     }
 
     var albums: List<Album>? = listOf();
-    var page: Page<DiscoverResult>? = null;
     private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
     //动态数据
     val albumListData: MutableLiveData<List<AlbumTwoItem>> = _albumListData;
@@ -52,43 +49,16 @@ class AlbumListViewModel(application: Application,
     fun getAlbumListData() : LiveData<List<AlbumTwoItem>> {
         return albumListData
     }
-
-    fun loadDataByDao(){
-        GlobalScope.launch(Dispatchers.IO) {
-            var params:HashMap<String,String> = hashMapOf();
-
-            //TODO it will crash when then request fail ??
-            /*
-             * java.net.SocketTimeoutException: failed to connect to api.themoviedb.org/2001:
-            **/
-            albumDaoImpl.getAll(true,params)
-                    .with(schedulerProvider)
-                    .subscribeBy (
-                        onSuccess = {
-                            albums = it;
-                            _albumListData.postValue(convertItems())
-                        },
-                        onError = {
-                            _errorLiveData.value = it
-                        }
-                    )
-
-        }
-
-    }
-
-    var myList: List<AlbumItem> = listOf();
     //加载测试数据
     fun loadData(){
         try {
             rxLaunch {
                 var params: Map<String, String> = mapOf<String, String>();
-                albumApi.popluarPage(MovieConstants.API_KEY, params)
+                albumRepository.getAll(true, params)
                     .with(schedulerProvider)
                     .subscribeBy(
                         onSuccess = {
-                            page = it
-                            convertPage();
+                            albums = it;
                             _albumListData.postValue(convertItems())
                         },
                         onError = { _errorLiveData.value = it }
@@ -99,44 +69,7 @@ class AlbumListViewModel(application: Application,
             e.printStackTrace()
             Log.i("Exception==", e.message.toString())
         }
-        /*GlobalScope.launch  {
-
-            //这里执行 http请求
-            //TODO
-
-
-            var list:MutableList<AlbumItem> = mutableListOf<AlbumItem>();
-            for(i in 1..17){
-                var item:AlbumItem=AlbumItem(i,"测试"+i,"")
-                list.add(item)
-            }
-            myList = list;
-            //刷新数据
-            _albumListData.postValue(buildItems())
-        }*/
     }
-
-
-    private fun convertPage():List<Album>{
-        var list: MutableList<Album> = mutableListOf<Album>();
-
-        page?.results?.forEach {
-            var album:Album=Album(
-                it?.id.let { 1 },
-                it?.title.let { "" },
-                "",
-                "",
-                "",
-                0,
-                it.id.toString(),
-                BASE_IMG_W500_PREFIX+it.posterPath,
-            )
-            list.add(album)
-        }
-
-        return list.toList();
-    }
-
     private fun convertItems():List<AlbumTwoItem>{
         var pageSize = 2;
         var list: MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
@@ -165,33 +98,7 @@ class AlbumListViewModel(application: Application,
                 }
                 list.add(AlbumTwoItem(itemOne, itemTwo))
             }
-
         }
-        return list;
-    }
-
-
-    //恩成 一行两个的显示方式
-    private fun buildItems(): List<AlbumTwoItem>{
-
-            var pageSize = 2;
-            var list: MutableList<AlbumTwoItem> = mutableListOf<AlbumTwoItem>();
-            var size:Int = myList.size;
-            for ((index, str) in myList.withIndex()) {
-
-                    var newIndex: Int = index * pageSize;
-                    var nextIndex: Int = newIndex + 1;
-                    if(newIndex < size) {
-                        var itemOne: AlbumItem? = myList?.get(newIndex);
-                        var itemTwo: AlbumItem? = null;
-
-                        if (nextIndex < size) {
-                            itemTwo = myList?.get(nextIndex);
-                        }
-                        list.add(AlbumTwoItem(itemOne, itemTwo))
-                    }
-
-            }
         return list;
     }
 
