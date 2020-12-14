@@ -25,18 +25,16 @@ class ApiModule {
 
     private fun retrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(okHttpClient)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+                .baseUrl(BASE_URL)
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
     }
 
-    /*private fun provideCountryApiService(retrofit: Retrofit): CountryApiService {
-        return retrofit.create(CountryApiService::class.java)
-    }*/
 
-    private fun provideAlbumApiService(retrofit: Retrofit):AlbumApi{
+
+    private fun provideAlbumApiService(retrofit: Retrofit): AlbumApi {
         return retrofit.create(AlbumApi::class.java);
     }
 

@@ -14,14 +14,14 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class App : Application() {
-    private val TAG:String = App::class.java.simpleName;
+    private val TAG: String = App::class.java.simpleName;
     lateinit var photoDao: PhotoDao;
-    lateinit var albumDao:AlbumDao;
+    lateinit var albumDao: AlbumDao;
 
     override fun onCreate() {
         super.onCreate()
         initInjection()
-       // init()
+        // init()
     }
 
 

@@ -17,8 +17,8 @@ fun loadImage(view: ImageView, url: String?) {
         val options = RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL)
 
         Glide.with(view.context).load(url)
-            .transition(withCrossFade())
-            .apply(options)
-            .into(view)
+                .transition(withCrossFade())
+                .apply(options)
+                .into(view)
     }
 }

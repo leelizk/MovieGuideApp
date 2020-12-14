@@ -4,16 +4,16 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "photo",)
+@Entity(tableName = "photo")
 data class Photo(
-    @PrimaryKey(autoGenerate = true)
-    val id:Int?,
-    @ColumnInfo(name = "albumId")
-    val albumId: Int,
-    @ColumnInfo(name = "title")
-    val title: String,
-    @ColumnInfo(name = "url")
-    val url: String,
-    @ColumnInfo(name = "thumbnailUrl")
-    val thumbnailUrl: String
+        @PrimaryKey(autoGenerate = true)
+        val id: Long? = null,
+        @ColumnInfo(name = "albumId")
+        val albumId: Long? = null,
+        @ColumnInfo(name = "title")
+        val title: String? = null,
+        @ColumnInfo(name = "url")
+        val url: String? = null,
+        @ColumnInfo(name = "thumbnailUrl")
+        val thumbnailUrl: String? = null
 )

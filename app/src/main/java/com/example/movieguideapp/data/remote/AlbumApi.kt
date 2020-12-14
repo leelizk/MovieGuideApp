@@ -13,6 +13,6 @@ interface AlbumApi {
 
     //流行电影列表
     @GET("discover/movie?sort_by=popularity.desc")
-    fun popularPage(@Query("api_key")token: String, @QueryMap body: Map<String, String>):Single<Page<DiscoverResult>>
+    fun popularPage(@Query("api_key") token: String, @QueryMap body: Map<String, String>): Single<Page<DiscoverResult>>
 
 }

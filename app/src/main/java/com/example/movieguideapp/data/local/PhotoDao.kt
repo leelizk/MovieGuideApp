@@ -18,7 +18,7 @@ interface PhotoDao {
     fun deleteByAlbumId(albumId: Int?)
 
     @Delete
-    fun deleteBy(photo:Photo?)
+    fun deleteBy(photo: Photo?)
 
     @Query("select * from photo")
     fun getAll(): List<Photo>
@@ -27,5 +27,5 @@ interface PhotoDao {
      * 查询相册下的所有图片
      */
     @Query("select * from photo where albumId = :albumId")
-    fun getAllByAlbumId(albumId:Int?): Single<List<Photo>>
+    fun getAllByAlbumId(albumId: Int?): Single<List<Photo>>
 }
