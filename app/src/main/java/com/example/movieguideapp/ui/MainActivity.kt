@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
+        //通过id获取 NavHostFragment
         navController = findNavController(R.id.container)
         Log.i(TAG,"navController :: " + navController)
         appBarConfiguration = AppBarConfiguration(navController.graph)
