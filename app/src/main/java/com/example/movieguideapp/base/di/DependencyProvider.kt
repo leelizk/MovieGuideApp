@@ -25,7 +25,6 @@ class DependencyProvider {
     }
 
     private val baseModule = module {
-        single { CountryRepository(get()) }
         viewModel { BaseActivityViewModel(androidApplication()) }
     }
 

@@ -26,11 +26,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.AlbumListActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
     </application>
 
 </manifest>
