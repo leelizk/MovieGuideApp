@@ -109,7 +109,7 @@ class AlbumListViewModel(application: Application,
                 if (nextIndex < size) {
                     var tmp2: Album? = albums?.get(nextIndex);
                     itemTwo = AlbumItem(nextIndex,tmp2?.title,
-                        tmp2?.poster,
+                            BASE_IMG_W500_PREFIX + tmp2?.poster,
                     onClick = {
 
                     });
