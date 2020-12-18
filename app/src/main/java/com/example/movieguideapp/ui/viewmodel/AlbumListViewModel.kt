@@ -2,8 +2,16 @@ package com.example.movieguideapp.ui.viewmodel
 
 import android.app.Application
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import com.example.movieguideapp.R
+import com.example.movieguideapp.R.id.container
+import com.example.movieguideapp.base.App
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
 import com.example.movieguideapp.data.AlbumRepository
@@ -32,6 +40,9 @@ class AlbumListViewModel(application: Application,
         //filetype .jpg,.png, .svg
         const val BASE_IMG_W500_PREFIX = "https://image.tmdb.org/t/p/w500/";
     }
+    private lateinit var navController: NavController;
+
+
 
     var albums: List<Album>? = listOf();
     private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
@@ -60,6 +71,8 @@ class AlbumListViewModel(application: Application,
                     .subscribeBy(
                         onSuccess = {
                             albums = it;
+                            //TODO 不能使用 postValue ?? 如果使用，不会刷新
+                            //_albumListData.postValue()
                             _albumListData.value = convertItems()
                         },
                         onError = { _errorLiveData.value = it }
@@ -83,9 +96,13 @@ class AlbumListViewModel(application: Application,
                 var tmp: Album? = albums?.get(newIndex);
                 var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.title,
                         BASE_IMG_W500_PREFIX + tmp?.poster,
-                    onClick = {
+                    //onClick = {
+                       // navController = Navigation.findNavController(getApplication<App>())
                        // parentFragment?.findNavController()?.navigate(command.actionId, command.args)
-                    }
+                    //}
+                        onClick = {
+                            go2Detail(it,tmp)
+                        }
                 );
                 var itemTwo: AlbumItem? = null;
 
@@ -103,5 +120,9 @@ class AlbumListViewModel(application: Application,
         return list;
     }
 
+
+    fun go2Detail(view: View, item:Album?=null){
+        Navigation.findNavController(view).navigate(R.id.album_detail_action)
+    }
 
 }

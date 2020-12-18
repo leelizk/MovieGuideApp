@@ -71,7 +71,7 @@
                 android:layout_weight="1"
                 android:src="@drawable/ic_launcher_background"
                 app:loadImage="@{twoItem.twoItem.imageUrl}"
-                android:onClick="@{()->twoItem.oneItem.onClick.invoke()}"
+                android:onClick="@{(view)->twoItem.oneItem.onClick.invoke(view)}"
                 />
 
 
