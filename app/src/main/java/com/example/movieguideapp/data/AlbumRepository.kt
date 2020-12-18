@@ -17,8 +17,13 @@ class AlbumRepository(
 ) {
 
 
+    fun getCount():Boolean{
+        return if(albumDao.getAllCount() > 0)  true  else false
+    }
+
     fun getAll(force: Boolean, params: Map<String, String>): Single<List<Album>> {
-        return if (force) {
+        var force1:Boolean =  getCount();
+        return if (!force1) {
             albumApi.popularPage(MovieConstants.API_KEY, params ?: emptyMap())
                     .with(schedulerProvider)
                     .flatMap {

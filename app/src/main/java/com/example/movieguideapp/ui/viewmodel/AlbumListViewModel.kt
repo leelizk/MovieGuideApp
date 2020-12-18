@@ -53,13 +53,14 @@ class AlbumListViewModel(application: Application,
     fun loadData(){
         try {
             rxLaunch {
+
                 var params: Map<String, String> = mapOf<String, String>();
                 albumRepository.getAll(true, params)
                     .with(schedulerProvider)
                     .subscribeBy(
                         onSuccess = {
                             albums = it;
-                            _albumListData.postValue(convertItems())
+                            _albumListData.value = convertItems()
                         },
                         onError = { _errorLiveData.value = it }
                     )

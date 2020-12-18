@@ -13,6 +13,8 @@ class AppDatabaseProvider(
     }
 
     //获取数据库引用
-    fun provideAppDataBase(): AppDatabase = Room.databaseBuilder(context, AppDatabase::class.java, DB_NAME)
+    fun provideAppDataBase(): AppDatabase = Room
+            .databaseBuilder(context, AppDatabase::class.java, DB_NAME)
+            .allowMainThreadQueries() // 不能在主线程进行查询
             .build()
 }
