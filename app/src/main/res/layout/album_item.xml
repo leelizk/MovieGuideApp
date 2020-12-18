@@ -28,7 +28,7 @@
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_vertical"
                 android:text="@{twoItem.oneItem.itemName}"
-                android:onClick="@{()->twoItem.oneItem.onClick.invoke()}"
+                android:onClick="@{(view)->twoItem.oneItem.onClick.invoke(view)}"
                 />
 
             <ImageView
