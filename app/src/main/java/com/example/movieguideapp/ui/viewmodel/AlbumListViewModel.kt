@@ -82,7 +82,7 @@ class AlbumListViewModel(application: Application,
             if(newIndex < size!!) {
                 var tmp: Album? = albums?.get(newIndex);
                 var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.title,
-                    tmp?.poster,
+                        BASE_IMG_W500_PREFIX + tmp?.poster,
                     onClick = {
                        // parentFragment?.findNavController()?.navigate(command.actionId, command.args)
                     }
