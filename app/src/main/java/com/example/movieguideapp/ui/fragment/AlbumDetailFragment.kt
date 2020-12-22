@@ -10,9 +10,9 @@ import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
 import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.databinding.AlbumDtailBinding
-import com.example.movieguideapp.databinding.FragmentAlbumListBinding
 import com.example.movieguideapp.ui.viewmodel.AlbumDetailViewModel
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
+import com.example.movieguideapp.ui.vo.AlbumItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -29,11 +29,7 @@ class AlbumDetailFragment : BaseFragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG,"111"+savedInstanceState?.getSerializable("album").toString())
-        // savedInstanceState is null
-        var album: Album = savedInstanceState?.getSerializable("album") as Album
-        //加载数据与传参
-        viewModel.onActivityCreated(album)
+
 
     }
 
@@ -45,19 +41,16 @@ class AlbumDetailFragment : BaseFragment(){
                 false
         )
 
-        var album: Album = savedInstanceState?.getSerializable("album") as Album
-        //加载数据与传参
-        viewModel.onActivityCreated(album)
-
-
-        Log.d(TAG,"222"+savedInstanceState?.getSerializable("album").toString())
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //why savedInstanceState is null??
-
+        var album: AlbumItem = arguments?.getSerializable("albumItem") as AlbumItem
+        Log.i(TAG,"==>"+album.itemName);
+        //加载数据与传参
+        viewModel.onActivityCreated(album)
         
     }
 

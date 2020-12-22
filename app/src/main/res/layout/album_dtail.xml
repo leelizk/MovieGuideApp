@@ -25,7 +25,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:layout_gravity="center_vertical"
-            android:text="@{viewModel.album.title}"
+            android:text="@{viewModel.album.itemName}"
             />
 
         <ImageView
@@ -36,14 +36,14 @@
             android:contentDescription="@null"
             android:layout_weight="1"
             android:src="@drawable/ic_launcher_background"
-            app:loadImage="@{viewModel.album.poster}"
+            app:loadImage="@{viewModel.album.imageUrl}"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@{viewModel.album.remark}"
+            android:text="@{viewModel.album.itemName}"
             />
 
         <Button

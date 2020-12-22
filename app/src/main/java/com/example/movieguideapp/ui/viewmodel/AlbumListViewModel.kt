@@ -1,6 +1,7 @@
 package com.example.movieguideapp.ui.viewmodel
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -42,8 +43,6 @@ class AlbumListViewModel(application: Application,
         //filetype .jpg,.png, .svg
         const val BASE_IMG_W500_PREFIX = "https://image.tmdb.org/t/p/w500/";
     }
-    private lateinit var navController: NavController;
-
 
 
     var albums: List<Album>? = listOf();
@@ -94,9 +93,10 @@ class AlbumListViewModel(application: Application,
 
             var newIndex: Int = index * pageSize;
             var nextIndex: Int = newIndex + 1;
+            var itemOne: AlbumItem?= null
             if(newIndex < size!!) {
                 var tmp: Album? = albums?.get(newIndex);
-                var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.title,
+                 itemOne = AlbumItem(newIndex,tmp?.title,
                         BASE_IMG_W500_PREFIX + tmp?.poster,
                     //onClick = {
                        // navController = Navigation.findNavController(getApplication<App>())
@@ -105,7 +105,7 @@ class AlbumListViewModel(application: Application,
                         onClick = {
                             //通过 xml 传参
                             //可以传当前的view 或者 context
-                            go2Detail(it,tmp)
+                           go2Detail(it,itemOne)
                         }
                 );
                 var itemTwo: AlbumItem? = null;
@@ -115,7 +115,7 @@ class AlbumListViewModel(application: Application,
                     itemTwo = AlbumItem(nextIndex,tmp2?.title,
                             BASE_IMG_W500_PREFIX + tmp2?.poster,
                     onClick = {
-                        go2Detail(it,tmp2)
+                        go2Detail(it,itemTwo)
                     });
                 }
                 list.add(AlbumTwoItem(itemOne, itemTwo))
@@ -125,10 +125,11 @@ class AlbumListViewModel(application: Application,
     }
 
 
-    fun go2Detail(view: View, item:Album?=null){
+    fun go2Detail( view: View, item:AlbumItem?=null){
         var b:Bundle = Bundle();
-        b.putSerializable("album",item)
-        Navigation.findNavController(view).navigate(R.id.album_detail_action,b)
+        b.putSerializable("albumItem",item)
+        view.findNavController().navigate(R.id.album_detail_action,b);
+       // Navigation.findNavController(view).navigate(R.id.album_detail_action,b)
     }
 
 }
