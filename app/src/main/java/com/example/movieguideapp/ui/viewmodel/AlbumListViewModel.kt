@@ -1,6 +1,8 @@
 package com.example.movieguideapp.ui.viewmodel
 
 import android.app.Application
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
@@ -101,6 +103,8 @@ class AlbumListViewModel(application: Application,
                        // parentFragment?.findNavController()?.navigate(command.actionId, command.args)
                     //}
                         onClick = {
+                            //通过 xml 传参
+                            //可以传当前的view 或者 context
                             go2Detail(it,tmp)
                         }
                 );
@@ -122,7 +126,9 @@ class AlbumListViewModel(application: Application,
 
 
     fun go2Detail(view: View, item:Album?=null){
-        Navigation.findNavController(view).navigate(R.id.album_detail_action)
+        var b:Bundle = Bundle();
+        b.putSerializable("album",item)
+        Navigation.findNavController(view).navigate(R.id.album_detail_action,b)
     }
 
 }

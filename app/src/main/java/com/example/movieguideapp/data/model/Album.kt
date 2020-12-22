@@ -3,12 +3,13 @@ package com.example.movieguideapp.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 /**
  * 相册
  */
 @Entity(tableName = "album")
-data class Album(
+data class Album (
         @PrimaryKey(autoGenerate = true)
         val id: Long? = null,
         @ColumnInfo(name = "title")
@@ -25,4 +26,4 @@ data class Album(
         val outId: String? = null,
         @ColumnInfo(name = "poster")
         val poster: String? = null
-)
+):Serializable
