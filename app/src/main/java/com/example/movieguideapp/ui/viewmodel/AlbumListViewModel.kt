@@ -115,7 +115,7 @@ class AlbumListViewModel(application: Application,
                     itemTwo = AlbumItem(nextIndex,tmp2?.title,
                             BASE_IMG_W500_PREFIX + tmp2?.poster,
                     onClick = {
-
+                        go2Detail(it,tmp2)
                     });
                 }
                 list.add(AlbumTwoItem(itemOne, itemTwo))
