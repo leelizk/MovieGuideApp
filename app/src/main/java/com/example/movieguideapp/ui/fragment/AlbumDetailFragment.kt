@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
+import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.databinding.FragmentAlbumListBinding
 import com.example.movieguideapp.ui.viewmodel.AlbumDetailViewModel
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
@@ -38,8 +39,9 @@ class AlbumDetailFragment : BaseFragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //加载数据
-        viewModel.onActivityCreated()
+        var album: Album = savedInstanceState?.getSerializable("album") as Album
+        //加载数据与传参
+        viewModel.onActivityCreated(album)
         
     }
 
