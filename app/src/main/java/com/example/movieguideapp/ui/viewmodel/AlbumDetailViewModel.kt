@@ -20,6 +20,10 @@ class AlbumDetailViewModel(application: Application) : BaseViewModel(application
     }
 
 
+    fun update(_album:AlbumItem){
+        album?.value = _album;
+    }
+
     fun play(context: Context, view: View){
         Log.i(TAG,"play ==>")
     }

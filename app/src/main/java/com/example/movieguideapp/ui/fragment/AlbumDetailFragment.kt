@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.observe
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
 import com.example.movieguideapp.databinding.AlbumDtailBinding
@@ -55,11 +56,14 @@ class AlbumDetailFragment : BaseFragment() {
 
     }
 
-    fun initLiveData(){
-        viewModel.album?.observe(viewLifecycleOwner,{
-            it->curAlbum =  it
-        })
+    private fun initLiveData(){
+        viewModel.album?.observe(viewLifecycleOwner) { it->updateItem(it)
+        }
     }
 
     //TODO  fragment 如何传参
+
+    private fun updateItem(item:AlbumItem){
+        viewModel.update(item)
+    }
 }
