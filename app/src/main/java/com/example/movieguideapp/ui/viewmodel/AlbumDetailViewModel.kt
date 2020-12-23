@@ -11,7 +11,7 @@ import com.example.movieguideapp.ui.vo.AlbumItem
 
 class AlbumDetailViewModel(application: Application) : BaseViewModel(application){
 
-    val album: MutableLiveData<AlbumItem>?=null;
+    val album: MutableLiveData<AlbumItem>?= MutableLiveData<AlbumItem>();
 
     private val TAG:String=AlbumDetailViewModel::class::java.javaClass.simpleName
 

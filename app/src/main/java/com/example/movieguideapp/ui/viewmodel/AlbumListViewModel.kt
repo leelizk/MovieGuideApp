@@ -46,6 +46,7 @@ class AlbumListViewModel(application: Application,
 
 
     var albums: List<Album>? = listOf();
+    // why ??
     private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
     //动态数据
     val albumListData: MutableLiveData<List<AlbumTwoItem>> = _albumListData;
