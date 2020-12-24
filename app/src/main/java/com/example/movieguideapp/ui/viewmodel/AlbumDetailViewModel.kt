@@ -14,14 +14,11 @@ class AlbumDetailViewModel(application: Application) : BaseViewModel(application
 
     private val TAG:String=AlbumDetailViewModel::class::java.javaClass.simpleName
 
-    fun onActivityCreated() {
-        //nothing to do
+    fun onActivityCreated(item:AlbumItem) {
+       _album.value = item;
     }
 
 
-    fun update(updateItem:AlbumItem){
-       _album.value = updateItem;
-    }
 
     fun play(context: Context, view: View){
         Log.i(TAG,"play ==>")

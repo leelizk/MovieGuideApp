@@ -25,14 +25,12 @@ class AlbumDetailFragment : BaseFragment() {
 
     private var binding by autoCleared<AlbumDtailBinding>()
 
-    private lateinit var curAlbum:AlbumItem;
+    private lateinit var album:AlbumItem;
 
     private val TAG: String = AlbumDetailFragment::class::java.javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,17 +40,14 @@ class AlbumDetailFragment : BaseFragment() {
                 container,
                 false
         )
-        binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initLiveData()
-        curAlbum = arguments?.getSerializable("albumItem") as AlbumItem
+        album = arguments?.getSerializable("albumItem") as AlbumItem
         //加载数据与传参
-        viewModel.onActivityCreated()
-        updateItem(curAlbum)
     }
 
     private fun initLiveData(){
