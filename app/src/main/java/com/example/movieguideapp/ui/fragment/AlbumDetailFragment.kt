@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
@@ -49,7 +50,7 @@ class AlbumDetailFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         initLiveData()
         //why savedInstanceState is null??
-        var curAlbum = arguments?.getSerializable("albumItem") as AlbumItem
+        curAlbum = arguments?.getSerializable("albumItem") as AlbumItem
         Log.i(TAG, "==>" + curAlbum.itemName);
         //加载数据与传参
         viewModel.onActivityCreated(curAlbum)
@@ -57,13 +58,15 @@ class AlbumDetailFragment : BaseFragment() {
     }
 
     private fun initLiveData(){
-        viewModel.album?.observe(viewLifecycleOwner) { it->updateItem(it)
-        }
+        //这里如何刷新？
+        viewModel.album?.observe(viewLifecycleOwner, Observer{
+             it-> curAlbum = it
+        })
     }
 
     //TODO  fragment 如何传参
 
     private fun updateItem(item:AlbumItem){
-        viewModel.update(item)
+       // viewModel.update(item)
     }
 }

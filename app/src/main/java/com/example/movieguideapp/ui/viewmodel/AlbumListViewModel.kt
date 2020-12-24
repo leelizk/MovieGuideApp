@@ -129,8 +129,8 @@ class AlbumListViewModel(application: Application,
     fun go2Detail( view: View, item:AlbumItem?=null){
         var b:Bundle = Bundle();
         b.putSerializable("albumItem",item)
-        view.findNavController().navigate(R.id.album_detail_action,b);
-       // Navigation.findNavController(view).navigate(R.id.album_detail_action,b)
+        //view.findNavController().navigate(R.id.album_detail_action,b);
+        findNavController(view).navigate(R.id.album_detail_action,b)
     }
 
 }
