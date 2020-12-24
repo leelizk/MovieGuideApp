@@ -14,7 +14,7 @@ class AlbumDetailViewModel(application: Application) : BaseViewModel(application
 
     private val TAG:String=AlbumDetailViewModel::class::java.javaClass.simpleName
 
-    fun onActivityCreated(item:AlbumItem) {
+    fun onActivityCreated(item:AlbumItem?) {
        _album.value = item;
     }
 

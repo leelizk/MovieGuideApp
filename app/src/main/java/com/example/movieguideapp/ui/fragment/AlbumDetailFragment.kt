@@ -1,5 +1,6 @@
 package com.example.movieguideapp.ui.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,7 +26,7 @@ class AlbumDetailFragment : BaseFragment() {
 
     private var binding by autoCleared<AlbumDtailBinding>()
 
-    private lateinit var album:AlbumItem;
+    private  var album:AlbumItem? = null;
 
     private val TAG: String = AlbumDetailFragment::class::java.javaClass.simpleName
 
@@ -40,14 +41,21 @@ class AlbumDetailFragment : BaseFragment() {
                 container,
                 false
         )
+        album = arguments?.getSerializable("albumItem") as AlbumItem
+        viewModel.onActivityCreated(album);
+        binding.abItemName1.text = viewModel.album?.value?.itemName;
+       // var uri:Uri =  URI(viewModel?.album?.value?.imageUrl)
+       // binding.abImage1
+
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initLiveData()
-        album = arguments?.getSerializable("albumItem") as AlbumItem
+
         //加载数据与传参
+        updateItem(album);
     }
 
     private fun initLiveData(){
@@ -60,7 +68,7 @@ class AlbumDetailFragment : BaseFragment() {
 
     //TODO  fragment 如何传参
 
-    private fun updateItem(item:AlbumItem){
-       viewModel.album?.postValue(item);
+    private fun updateItem(item:AlbumItem?=null){
+       viewModel?.onActivityCreated(item);
     }
 }
