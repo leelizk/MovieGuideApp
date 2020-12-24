@@ -5,23 +5,22 @@ import android.content.Context
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
-
-import com.example.movieguideapp.data.model.Album
 import com.example.movieguideapp.ui.vo.AlbumItem
 
 class AlbumDetailViewModel(application: Application) : BaseViewModel(application){
 
-    val album: MutableLiveData<AlbumItem>?= MutableLiveData<AlbumItem>();
+    private val _album:MutableLiveData<AlbumItem> = MutableLiveData<AlbumItem>();
+    val album: MutableLiveData<AlbumItem>?= _album
 
     private val TAG:String=AlbumDetailViewModel::class::java.javaClass.simpleName
 
-    fun onActivityCreated(_album: AlbumItem?=null) {
-        album?.value = _album;
+    fun onActivityCreated() {
+        //nothing to do
     }
 
 
-    fun update(_album:AlbumItem){
-        album?.value = _album;
+    fun update(updateItem:AlbumItem){
+       _album.value = updateItem;
     }
 
     fun play(context: Context, view: View){

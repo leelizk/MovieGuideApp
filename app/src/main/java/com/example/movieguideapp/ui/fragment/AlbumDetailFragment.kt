@@ -42,31 +42,30 @@ class AlbumDetailFragment : BaseFragment() {
                 container,
                 false
         )
-
+        binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initLiveData()
-        //why savedInstanceState is null??
         curAlbum = arguments?.getSerializable("albumItem") as AlbumItem
-        Log.i(TAG, "==>" + curAlbum.itemName);
         //加载数据与传参
-        viewModel.onActivityCreated(curAlbum)
-
+        viewModel.onActivityCreated()
+        updateItem(curAlbum)
     }
 
     private fun initLiveData(){
         //这里如何刷新？
-        viewModel.album?.observe(viewLifecycleOwner, Observer{
-             it-> curAlbum = it
-        })
+        //viewModel.album?.observe(viewLifecycleOwner, Observer{
+            //update ui ?? 这个要怎么写?
+            //viewModel.album.value.imageUrl = it.imageUrl
+        //})
     }
 
     //TODO  fragment 如何传参
 
     private fun updateItem(item:AlbumItem){
-       // viewModel.update(item)
+       viewModel.album?.postValue(item);
     }
 }
