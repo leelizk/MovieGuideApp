@@ -26,8 +26,6 @@ class AlbumDetailFragment : BaseFragment() {
 
     private var binding by autoCleared<AlbumDtailBinding>()
 
-    private  var album:AlbumItem? = null;
-
     private val TAG: String = AlbumDetailFragment::class::java.javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,21 +39,18 @@ class AlbumDetailFragment : BaseFragment() {
                 container,
                 false
         )
-        album = arguments?.getSerializable("albumItem") as AlbumItem
-        viewModel.onActivityCreated(album);
-        binding.abItemName1.text = viewModel.album?.value?.itemName;
-       // var uri:Uri =  URI(viewModel?.album?.value?.imageUrl)
-       // binding.abImage1
-
+        binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        var album = arguments?.getSerializable("albumItem") as AlbumItem
         initLiveData()
 
         //加载数据与传参
-        updateItem(album);
+        viewModel.onActivityCreated(album)
+
     }
 
     private fun initLiveData(){
