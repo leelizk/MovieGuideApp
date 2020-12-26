@@ -1,14 +1,10 @@
 package com.example.movieguideapp.ui.fragment
 
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
 import com.example.movieguideapp.databinding.AlbumDtailBinding
@@ -32,12 +28,16 @@ class AlbumDetailFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.album_dtail,
-                container,
-                false
+            inflater,
+            R.layout.album_dtail,
+            container,
+            false
         )
         binding.viewModel = viewModel
         return binding.root
@@ -53,17 +53,17 @@ class AlbumDetailFragment : BaseFragment() {
 
     }
 
-    private fun initLiveData(){
+    private fun initLiveData() {
         //这里如何刷新？
         //viewModel.album?.observe(viewLifecycleOwner, Observer{
-            //update ui ?? 这个要怎么写?
-            //viewModel.album.value.imageUrl = it.imageUrl
+        //update ui ?? 这个要怎么写?
+        //viewModel.album.value.imageUrl = it.imageUrl
         //})
     }
 
     //TODO  fragment 如何传参
 
-    private fun updateItem(item:AlbumItem?=null){
-       viewModel?.onActivityCreated(item);
+    private fun updateItem(item: AlbumItem? = null) {
+        viewModel?.onActivityCreated(item);
     }
 }
