@@ -9,6 +9,7 @@ import com.example.movieguideapp.base.di.ApiModule.Companion.apiModule
 import com.example.movieguideapp.data.AlbumRepository
 import com.example.movieguideapp.ui.viewmodel.AlbumDetailViewModel
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
+import com.google.android.exoplayer2.SimpleExoPlayer
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -43,6 +44,12 @@ class DependencyProvider {
         //定义新增的viewModel
         viewModel { AlbumListViewModel(androidApplication(), get(), get()) }
         viewModel { AlbumDetailViewModel(androidApplication()) }
+    }
+
+    private val playerApi = module {
+        single {
+
+        }
     }
 
 
