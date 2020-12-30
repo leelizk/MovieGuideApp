@@ -24,6 +24,28 @@ x
         android:name="com.example.movieguideapp.ui.fragment.AlbumDetailFragment"
         android:label="album detail"
         tools:layout="@layout/album_dtail"
-        />
+        >
+        <action android:id="@+id/player_action"
+                app:destination="@id/player_fragment"
+            />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/player_fragment"
+        android:name="com.example.movieguideapp.ui.fragment.MyPlayerFragment"
+        android:label="album detail"
+        >
+
+        <com.google.android.exoplayer2.ui.StyledPlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:show_buffering="when_playing"
+            app:show_shuffle_button="true"/>
+
+    </fragment>
+
+
 
 </navigation>

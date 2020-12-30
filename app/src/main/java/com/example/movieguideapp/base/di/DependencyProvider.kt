@@ -6,6 +6,7 @@ import com.example.movieguideapp.ui.viewmodel.BaseActivityViewModel
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.common.schedulers.SchedulerProvider
 import com.example.movieguideapp.base.di.ApiModule.Companion.apiModule
+import com.example.movieguideapp.base.utils.PlayUtil
 import com.example.movieguideapp.data.AlbumRepository
 import com.example.movieguideapp.ui.viewmodel.AlbumDetailViewModel
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
@@ -43,12 +44,12 @@ class DependencyProvider {
     private val albumListViewModel = module {
         //定义新增的viewModel
         viewModel { AlbumListViewModel(androidApplication(), get(), get()) }
-        viewModel { AlbumDetailViewModel(androidApplication()) }
+        viewModel { AlbumDetailViewModel(androidApplication(),get()) }
     }
 
     private val playerApi = module {
         single {
-
+            PlayUtil(androidApplication())
         }
     }
 
@@ -59,6 +60,7 @@ class DependencyProvider {
             apiModule,
             daoModule,
             albumModule,
+            playerApi,
             albumListViewModel,
     )
 }
