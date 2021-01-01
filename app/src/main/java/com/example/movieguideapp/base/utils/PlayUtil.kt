@@ -1,13 +1,8 @@
 package com.example.movieguideapp.base.utils
 
 import android.content.Context
-import android.net.Uri
-import android.view.View
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
-import com.google.android.exoplayer2.ui.StyledPlayerView
 
 class PlayUtil(context: Context){
 
@@ -21,11 +16,9 @@ class PlayUtil(context: Context){
     }
 
 
-    fun playHls(target: StyledPlayerView, _uri: String){
+    fun playHls(_uri: String) {
         //check uri support or not
-
         INSTANCE?.setMediaItem(MediaItem.fromUri(_uri));
-        target.player = INSTANCE;
         INSTANCE?.prepare();
         INSTANCE?.play();
     }
@@ -36,17 +29,20 @@ class PlayUtil(context: Context){
         play(mediaItem)
     }
 
-    private fun play(mediaItem: MediaItem){
+    private fun play(mediaItem: MediaItem) {
         INSTANCE?.setMediaItem(mediaItem)
         INSTANCE?.prepare();
         INSTANCE?.play();
     }
 
 
+    fun getPlayer(): SimpleExoPlayer? {
+        return INSTANCE;
+    }
 
 
     companion object {
-        const val  DEBUG_URL = "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8";
+        const val DEBUG_URL = "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8";
         const val UA = "ua"
     }
 
