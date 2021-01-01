@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.example.movieguideapp.BuildConfig
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
 import com.example.movieguideapp.base.utils.PlayUtil
@@ -48,8 +49,17 @@ class MyPlayerFragment : BaseFragment() {
         viewModel.addToPlay(videoUrl)
         player_view.player = playUtil.getPlayer()
         // var tmpUrl:String = viewModel.playOne();
-        playUtil.playHls(DEBUG_URL);
+        if (BuildConfig.DEBUG) {
+            playUtil.playHls(DEBUG_URL);
+        } else {
+            playUtil.playHls(videoUrl); }
 
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        playUtil.getPlayer()?.release()
     }
 
 

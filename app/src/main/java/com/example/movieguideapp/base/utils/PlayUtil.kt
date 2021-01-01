@@ -18,12 +18,23 @@ class PlayUtil(context: Context){
 
     fun playHls(_uri: String) {
         //check uri support or not
-        INSTANCE?.setMediaItem(MediaItem.fromUri(_uri));
-        INSTANCE?.prepare();
-        INSTANCE?.play();
+        if (checkHls(_uri)) {
+            INSTANCE?.setMediaItem(MediaItem.fromUri(_uri));
+            INSTANCE?.prepare();
+            INSTANCE?.play();
+        } else {
+            // pop up tips ??
+        }
     }
 
-    fun playFile(path: String){
+    private fun checkHls(uri: String): Boolean {
+        if (uri.endsWith("m3u8", true)) {
+            return true;
+        }
+        return false;
+    }
+
+    fun playFile(path: String) {
         //check File support or not
         val mediaItem: MediaItem = MediaItem.fromUri(path)
         play(mediaItem)
