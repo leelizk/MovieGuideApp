@@ -24,6 +24,7 @@ class PlayUtil(context: Context){
             INSTANCE?.play();
         } else {
             // pop up tips ??
+
         }
     }
 

@@ -1,19 +1,14 @@
 package com.example.movieguideapp.ui.fragment
 
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
 import com.example.movieguideapp.databinding.AlbumDtailBinding
 import com.example.movieguideapp.ui.viewmodel.AlbumDetailViewModel
-import com.example.movieguideapp.ui.vo.AlbumItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -46,25 +41,27 @@ class AlbumDetailFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var album = arguments?.getSerializable("albumItem") as AlbumItem
+        //do no pass object
+        //var album = arguments?.getSerializable("albumItem") as AlbumItem
+
+        var albumId = arguments?.getLong("albumId")
+
+
         initLiveData()
 
         //加载数据与传参
-        viewModel.onActivityCreated(album)
+        viewModel.loadData(albumId);
 
     }
 
-    private fun initLiveData(){
+    //
+    private fun initLiveData() {
+
         //这里如何刷新？
         //viewModel.album?.observe(viewLifecycleOwner, Observer{
-            //update ui ?? 这个要怎么写?
-            //viewModel.album.value.imageUrl = it.imageUrl
+        //update ui ?? 这个要怎么写?
+        //viewModel.album.value.imageUrl = it.imageUrl
         //})
     }
 
-    //TODO  fragment 如何传参
-
-    private fun updateItem(item:AlbumItem?=null){
-       viewModel?.onActivityCreated(item);
-    }
 }

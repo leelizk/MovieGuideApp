@@ -11,6 +11,10 @@ interface AlbumDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(albums: List<Album>)
 
+
+    @Query(value = "select * from album where id=:id")
+    fun getById(id: Long?): Album
+
     @Delete
     fun deleteBy(album: Album?)
 

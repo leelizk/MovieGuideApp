@@ -114,4 +114,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.12.2'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.12.2'
     implementation 'com.google.android.exoplayer:exoplayer-hls:2.12.2'
+
+    //timbercom.jakewharton.timber:timber:
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

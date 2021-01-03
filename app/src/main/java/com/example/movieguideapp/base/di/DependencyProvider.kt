@@ -7,10 +7,7 @@ import com.example.movieguideapp.base.common.schedulers.SchedulerProvider
 import com.example.movieguideapp.base.di.ApiModule.Companion.apiModule
 import com.example.movieguideapp.base.utils.PlayUtil
 import com.example.movieguideapp.data.AlbumRepository
-import com.example.movieguideapp.ui.viewmodel.AlbumDetailViewModel
-import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
-import com.example.movieguideapp.ui.viewmodel.BaseActivityViewModel
-import com.example.movieguideapp.ui.viewmodel.MyPlayerViewModel
+import com.example.movieguideapp.ui.viewmodel.*
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -44,7 +41,9 @@ class DependencyProvider {
     private val albumListViewModel = module {
         //定义新增的viewModel
         viewModel { AlbumListViewModel(androidApplication(), get(), get()) }
-        viewModel { AlbumDetailViewModel(androidApplication(), get()) }
+        //导航viewModel
+        viewModel { NavigationViewModel() }
+        viewModel { AlbumDetailViewModel(androidApplication(), get(), get()) }
         viewModel { MyPlayerViewModel(androidApplication(), get()) }
     }
 
