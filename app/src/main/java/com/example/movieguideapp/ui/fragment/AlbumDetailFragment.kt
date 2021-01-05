@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.navArgs
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
 import com.example.movieguideapp.databinding.AlbumDtailBinding
@@ -20,6 +21,8 @@ class AlbumDetailFragment : BaseFragment() {
     private val viewModel: AlbumDetailViewModel by viewModel()
 
     private var binding by autoCleared<AlbumDtailBinding>()
+
+    private val args:AlbumDetailFragmentArgs by navArgs()
 
     private val TAG: String = AlbumDetailFragment::class::java.javaClass.simpleName
 
@@ -44,13 +47,13 @@ class AlbumDetailFragment : BaseFragment() {
         //do no pass object
         //var album = arguments?.getSerializable("albumItem") as AlbumItem
 
-        var albumId = arguments?.getLong("albumId")
+        var albumId = args
 
 
         initLiveData()
 
         //加载数据与传参
-        viewModel.loadData(albumId);
+        viewModel.loadData(albumId as Long);
 
     }
 

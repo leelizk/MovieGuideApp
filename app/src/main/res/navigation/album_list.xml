@@ -22,6 +22,12 @@
         android:name="com.example.movieguideapp.ui.fragment.AlbumDetailFragment"
         android:label="album detail"
         tools:layout="@layout/album_dtail">
+        <argument
+            android:name="itemId"
+            android:defaultValue="0L"
+            app:argType="long"
+            app:nullable="false"
+            />
         <action
             android:id="@+id/player_action"
             app:destination="@id/player_fragment" />

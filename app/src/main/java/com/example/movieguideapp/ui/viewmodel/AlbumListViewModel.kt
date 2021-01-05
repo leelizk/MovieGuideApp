@@ -132,7 +132,7 @@ class AlbumListViewModel(application: Application,
        // b.putSerializable("albumItem",item)
         //view.findNavController().navigate(R.id.album_detail_action,b);
         //findNavController(view).navigate(R.id.album_detail_action,b)
-        naviagtionViewModel.showDetail();
+        naviagtionViewModel.showDetail(itemId);
     }
 
 }

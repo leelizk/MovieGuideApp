@@ -7,9 +7,9 @@ import com.example.movieguideapp.ui.fragment.AlbumFragmentDirections
 
 class AlbumListNaviagtionViewModel : NavigationViewModel() {
 
-    fun showDetail() {
+    fun showDetail(itemId:Long) {
         navigationCommandStream.value = NavigationCommand.ShowFragment(
-            directions = AlbumFragmentDirections.albumDetailAction()
+            directions = AlbumFragmentDirections.albumDetailAction(itemId)
         )
     }
 
