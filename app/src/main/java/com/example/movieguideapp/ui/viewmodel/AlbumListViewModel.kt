@@ -33,6 +33,7 @@ import kotlinx.coroutines.launch
 
 class AlbumListViewModel(application: Application,
                          private val albumRepository: AlbumRepository,
+                         val naviagtionViewModel: AlbumListNaviagtionViewModel,
                          private val schedulerProvider: BaseSchedulerProvider
 ): BaseViewModel(application){
 
@@ -106,7 +107,7 @@ class AlbumListViewModel(application: Application,
                         onClick = {
                             //通过 xml 传参
                             //可以传当前的view 或者 context
-                           go2Detail(it,itemOne)
+                           go2Detail(it,tmp?.id!!)
                         }
                 );
                 var itemTwo: AlbumItem? = null;
@@ -116,7 +117,7 @@ class AlbumListViewModel(application: Application,
                     itemTwo = AlbumItem(nextIndex,tmp2?.title,
                             BASE_IMG_W500_PREFIX + tmp2?.poster,
                     onClick = {
-                        go2Detail(it,itemTwo)
+                        go2Detail(it,tmp2?.id!!)
                     });
                 }
                 list.add(AlbumTwoItem(itemOne, itemTwo))
@@ -126,11 +127,12 @@ class AlbumListViewModel(application: Application,
     }
 
 
-    fun go2Detail( view: View, item:AlbumItem?=null){
-        var b:Bundle = Bundle();
-        b.putSerializable("albumItem",item)
+    fun go2Detail( view: View, itemId:Long){
+      //  var b:Bundle = Bundle();
+       // b.putSerializable("albumItem",item)
         //view.findNavController().navigate(R.id.album_detail_action,b);
-        findNavController(view).navigate(R.id.album_detail_action,b)
+        //findNavController(view).navigate(R.id.album_detail_action,b)
+        naviagtionViewModel.showDetail();
     }
 
 }

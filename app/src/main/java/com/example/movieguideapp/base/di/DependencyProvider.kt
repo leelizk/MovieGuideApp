@@ -39,10 +39,11 @@ class DependencyProvider {
 
 
     private val albumListViewModel = module {
-        //定义新增的viewModel
-        viewModel { AlbumListViewModel(androidApplication(), get(), get()) }
+
         //导航viewModel
-        viewModel { NavigationViewModel() }
+        viewModel { AlbumListNaviagtionViewModel() }
+        //定义新增的viewModel
+        viewModel { AlbumListViewModel(androidApplication(), get(),get(), get()) }
         viewModel { AlbumDetailViewModel(androidApplication(), get(), get()) }
         viewModel { MyPlayerViewModel(androidApplication(), get()) }
     }

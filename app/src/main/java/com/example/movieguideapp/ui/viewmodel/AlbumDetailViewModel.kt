@@ -9,7 +9,7 @@ import com.example.movieguideapp.data.model.Album
 
 class AlbumDetailViewModel(
     application: Application,
-    val navigationViewModel: NavigationViewModel,
+    val navigationViewModel: AlbumListNaviagtionViewModel,
     val albumDao: AlbumDao
 ) : BaseViewModel(application) {
 
@@ -25,7 +25,7 @@ class AlbumDetailViewModel(
 
 
     fun play(context: Context, view: View) {
-
+        navigationViewModel.showPlay(album?.value?.poster.toString())
     }
 
 }
