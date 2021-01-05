@@ -8,6 +8,7 @@ import com.example.movieguideapp.base.di.ApiModule.Companion.apiModule
 import com.example.movieguideapp.base.utils.PlayUtil
 import com.example.movieguideapp.data.AlbumRepository
 import com.example.movieguideapp.ui.viewmodel.*
+import com.freshly.meal.ui.common.navigation.Navigator
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -38,12 +39,18 @@ class DependencyProvider {
     }
 
 
+    private val navigationModule = module {
+        factory { Navigator() }
+        viewModel { NavigationViewModel() }
+    }
+
+
     private val albumListViewModel = module {
 
         //导航viewModel
         viewModel { AlbumListNaviagtionViewModel() }
         //定义新增的viewModel
-        viewModel { AlbumListViewModel(androidApplication(), get(),get(), get()) }
+        viewModel { AlbumListViewModel(androidApplication(), get(), get(), get()) }
         viewModel { AlbumDetailViewModel(androidApplication(), get(), get()) }
         viewModel { MyPlayerViewModel(androidApplication(), get()) }
     }
@@ -62,6 +69,7 @@ class DependencyProvider {
             daoModule,
             albumModule,
             playerApi,
+            navigationModule,
             albumListViewModel,
     )
 }
