@@ -1,9 +1,20 @@
 package com.example.movieguideapp.ui.viewmodel
 
 import android.app.Application
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import com.example.movieguideapp.R
+import com.example.movieguideapp.R.id.container
+import com.example.movieguideapp.base.App
 import com.example.movieguideapp.base.common.schedulers.BaseSchedulerProvider
 import com.example.movieguideapp.base.extension.with
 import com.example.movieguideapp.data.AlbumRepository
@@ -33,7 +44,9 @@ class AlbumListViewModel(application: Application,
         const val BASE_IMG_W500_PREFIX = "https://image.tmdb.org/t/p/w500/";
     }
 
+
     var albums: List<Album>? = listOf();
+    // why ??
     private val _albumListData : MutableLiveData<List<AlbumTwoItem>> = MutableLiveData<List<AlbumTwoItem>>();
     //动态数据
     val albumListData: MutableLiveData<List<AlbumTwoItem>> = _albumListData;
@@ -53,13 +66,16 @@ class AlbumListViewModel(application: Application,
     fun loadData(){
         try {
             rxLaunch {
+
                 var params: Map<String, String> = mapOf<String, String>();
                 albumRepository.getAll(true, params)
                     .with(schedulerProvider)
                     .subscribeBy(
                         onSuccess = {
                             albums = it;
-                            _albumListData.postValue(convertItems())
+                            //TODO 不能使用 postValue ?? 如果使用，不会刷新
+                            //_albumListData.postValue()
+                            _albumListData.value = convertItems()
                         },
                         onError = { _errorLiveData.value = it }
                     )
@@ -78,22 +94,29 @@ class AlbumListViewModel(application: Application,
 
             var newIndex: Int = index * pageSize;
             var nextIndex: Int = newIndex + 1;
+            var itemOne: AlbumItem?= null
             if(newIndex < size!!) {
                 var tmp: Album? = albums?.get(newIndex);
-                var itemOne: AlbumItem? = AlbumItem(newIndex,tmp?.title,
-                    tmp?.poster,
-                    onClick = {
+                 itemOne = AlbumItem(newIndex,tmp?.title,
+                        BASE_IMG_W500_PREFIX + tmp?.poster,
+                    //onClick = {
+                       // navController = Navigation.findNavController(getApplication<App>())
                        // parentFragment?.findNavController()?.navigate(command.actionId, command.args)
-                    }
+                    //}
+                        onClick = {
+                            //通过 xml 传参
+                            //可以传当前的view 或者 context
+                           go2Detail(it,itemOne)
+                        }
                 );
                 var itemTwo: AlbumItem? = null;
 
                 if (nextIndex < size) {
                     var tmp2: Album? = albums?.get(nextIndex);
                     itemTwo = AlbumItem(nextIndex,tmp2?.title,
-                        tmp2?.poster,
+                            BASE_IMG_W500_PREFIX + tmp2?.poster,
                     onClick = {
-
+                        go2Detail(it,itemTwo)
                     });
                 }
                 list.add(AlbumTwoItem(itemOne, itemTwo))
@@ -102,5 +125,12 @@ class AlbumListViewModel(application: Application,
         return list;
     }
 
+
+    fun go2Detail( view: View, item:AlbumItem?=null){
+        var b:Bundle = Bundle();
+        b.putSerializable("albumItem",item)
+        //view.findNavController().navigate(R.id.album_detail_action,b);
+        findNavController(view).navigate(R.id.album_detail_action,b)
+    }
 
 }

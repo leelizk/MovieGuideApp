@@ -1,14 +1,26 @@
 package com.example.movieguideapp.ui.viewmodel
 
 import android.app.Application
-import com.example.movieguideapp.data.model.Album
+import android.content.Context
+import android.util.Log
+import android.view.View
+import androidx.lifecycle.MutableLiveData
+import com.example.movieguideapp.ui.vo.AlbumItem
 
-class AlbumDetailViewModel(application: Application) : BaseViewModel(application){
+class AlbumDetailViewModel(application: Application) : BaseViewModel(application) {
 
-    var album:Album?=null;
+    private val _album: MutableLiveData<AlbumItem> = MutableLiveData<AlbumItem>();
+    val album: MutableLiveData<AlbumItem>? = _album
 
-    fun loadData(){
+    private val TAG: String = AlbumDetailViewModel::class::java.javaClass.simpleName
 
+    fun onActivityCreated(item: AlbumItem?) {
+        _album.value = item;
+    }
+
+
+    fun play(context: Context, view: View) {
+        Log.i(TAG, "play ==>")
     }
 
 }
