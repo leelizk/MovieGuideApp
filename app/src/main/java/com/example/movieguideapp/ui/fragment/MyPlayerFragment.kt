@@ -11,6 +11,7 @@ import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
 import com.example.movieguideapp.databinding.FragmentPlayerBinding
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.SimpleExoPlayer
 
 
 class MyPlayerFragment : BaseFragment() {
@@ -39,6 +40,7 @@ class MyPlayerFragment : BaseFragment() {
         videoUrl = args?.videoUrl.toString()
         Log.i("Player", " 播放地址 >>>  ${videoUrl}")
         val mediaItem: MediaItem = MediaItem.fromUri(videoUrl);
+        binding.playerView.player = context?.let { SimpleExoPlayer.Builder(it).build() }
         binding.playerView.player?.setMediaItem(mediaItem)
         binding.playerView.player?.prepare()
         binding.playerView.player?.seekTo(0)
