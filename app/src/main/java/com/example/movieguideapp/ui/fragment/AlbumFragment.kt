@@ -14,14 +14,18 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
+import com.example.movieguideapp.base.extension.initNavigator
 import com.example.movieguideapp.ui.vo.AlbumTwoItem
 import com.example.movieguideapp.databinding.FragmentAlbumListBinding
 import com.example.movieguideapp.ui.adapter.AlbumListAdapter
+import com.example.movieguideapp.ui.viewmodel.AlbumListNaviagtionViewModel
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
 
 class AlbumFragment : BaseFragment() {
 
     private val viewModel: AlbumListViewModel by viewModel()
+
+    private val naviagtionViewModel: AlbumListNaviagtionViewModel by viewModel()
 
     private lateinit var adapter: AlbumListAdapter<AlbumTwoItem>
 
@@ -40,6 +44,7 @@ class AlbumFragment : BaseFragment() {
             container,
             false
         )
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -62,6 +67,7 @@ class AlbumFragment : BaseFragment() {
 
         initView()
         initLiveData()
+        initNavigator(viewModel.naviagtionViewModel)
         initErrorHandler(viewModel)
         //加载数据
         viewModel.onActivityCreated()

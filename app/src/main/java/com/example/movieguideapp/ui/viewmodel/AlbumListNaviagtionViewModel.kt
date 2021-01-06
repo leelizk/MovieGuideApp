@@ -9,7 +9,7 @@ class AlbumListNaviagtionViewModel : NavigationViewModel() {
 
     fun showDetail(itemId:Long) {
         navigationCommandStream.value = NavigationCommand.ShowFragment(
-            directions = AlbumFragmentDirections.albumDetailAction(itemId)
+            directions =  AlbumFragmentDirections.albumDetailAction(itemId)
         )
     }
 
