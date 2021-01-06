@@ -31,7 +31,7 @@ class AlbumDetailViewModel(
                         .subscribeBy(
                                 onSuccess = {
                                     Log.i("album", "test >>> ${it.title} , ${it.poster}")
-                                    album?.value = it;
+                                    _album?.value = it;
                                 },
                                 onError = { _errorLiveData.value = it }
                         )
