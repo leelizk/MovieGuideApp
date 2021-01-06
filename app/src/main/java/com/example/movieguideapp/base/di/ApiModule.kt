@@ -15,6 +15,7 @@ class ApiModule {
     companion object {
         val apiModule = ApiModule().provideModules()
         const val BASE_URL = "https://api.themoviedb.org/3/"
+        const val TEST_HLS = "";
     }
 
     private fun okHttpClient(): OkHttpClient {

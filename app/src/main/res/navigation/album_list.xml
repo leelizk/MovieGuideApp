@@ -11,11 +11,9 @@
         android:label="hello album"
         tools:layout="@layout/fragment_album_list">
 
-        <action android:id="@+id/album_detail_action"
-                app:destination="@+id/album_detail"
-            />
-x
-
+        <action
+            android:id="@+id/album_detail_action"
+            app:destination="@id/album_detail" />
     </fragment>
 
 
@@ -23,7 +21,34 @@ x
         android:id="@+id/album_detail"
         android:name="com.example.movieguideapp.ui.fragment.AlbumDetailFragment"
         android:label="album detail"
-        tools:layout="@layout/album_dtail"
-        />
+        tools:layout="@layout/album_dtail">
+        <argument
+            android:name="itemId"
+            android:defaultValue="0L"
+            app:argType="long"
+            app:nullable="false"
+            />
+        <action
+            android:id="@+id/player_action"
+            app:destination="@id/player_fragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/player_fragment"
+        android:name="com.example.movieguideapp.ui.fragment.MyPlayerFragment"
+        android:label="album detail"
+        tools:layout="@layout/fragment_player">
+        <argument
+            android:name="video_url"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/player_goback"
+            app:destination="@id/album_detail" />
+    </fragment>
+
+
 
 </navigation>

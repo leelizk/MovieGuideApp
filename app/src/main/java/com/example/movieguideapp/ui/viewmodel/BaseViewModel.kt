@@ -11,8 +11,7 @@ import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
-    val disposables = CompositeDisposable()
-
+    private val disposables = CompositeDisposable()
 
     protected val _errorLiveData = MutableLiveData<Throwable>()
 

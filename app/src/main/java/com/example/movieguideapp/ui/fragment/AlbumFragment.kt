@@ -1,23 +1,18 @@
 package com.example.movieguideapp.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
-import com.example.movieguideapp.ui.vo.AlbumTwoItem
 import com.example.movieguideapp.databinding.FragmentAlbumListBinding
 import com.example.movieguideapp.ui.adapter.AlbumListAdapter
 import com.example.movieguideapp.ui.viewmodel.AlbumListViewModel
+import com.example.movieguideapp.ui.vo.AlbumTwoItem
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AlbumFragment : BaseFragment() {
 
@@ -40,6 +35,7 @@ class AlbumFragment : BaseFragment() {
             container,
             false
         )
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -62,6 +58,7 @@ class AlbumFragment : BaseFragment() {
 
         initView()
         initLiveData()
+        initNavigator(viewModel.navigationViewModel)
         initErrorHandler(viewModel)
         //加载数据
         viewModel.onActivityCreated()
