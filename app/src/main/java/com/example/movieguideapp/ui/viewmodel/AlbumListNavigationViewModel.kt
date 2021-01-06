@@ -5,17 +5,17 @@ import com.example.movieguideapp.base.utils.PlayUtil.Companion.DEBUG_URL
 import com.example.movieguideapp.ui.fragment.AlbumDetailFragmentDirections
 import com.example.movieguideapp.ui.fragment.AlbumFragmentDirections
 
-class AlbumListNaviagtionViewModel : NavigationViewModel() {
+class AlbumListNavigationViewModel : NavigationViewModel() {
 
-    fun showDetail(itemId:Long) {
+    fun showDetail(itemId: Long) {
         navigationCommandStream.value = NavigationCommand.ShowFragment(
-            directions =  AlbumFragmentDirections.albumDetailAction(itemId)
+                directions = AlbumFragmentDirections.albumDetailAction(itemId)
         )
     }
 
     fun showPlay(url: String) {
         var tmpUrl = url;
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             tmpUrl = DEBUG_URL
         }
 

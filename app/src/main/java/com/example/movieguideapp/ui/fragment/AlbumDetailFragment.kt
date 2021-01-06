@@ -1,6 +1,7 @@
 package com.example.movieguideapp.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,9 +23,9 @@ class AlbumDetailFragment : BaseFragment() {
 
     private var binding by autoCleared<AlbumDtailBinding>()
 
-    private val args:AlbumDetailFragmentArgs by navArgs()
+    private val args: AlbumDetailFragmentArgs by navArgs()
 
-    private val TAG: String = AlbumDetailFragment::class::java.javaClass.simpleName
+    private val TAG: String = AlbumDetailFragment::class::java.javaClass.simpleName.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,27 +45,12 @@ class AlbumDetailFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //do no pass object
-        //var album = arguments?.getSerializable("albumItem") as AlbumItem
-
-        var albumId = args
-
-
-        initLiveData()
-
+        var albumId = args.itemId
+        Log.i(TAG, "albumId ===> $albumId")
+        initNavigator(viewModel.navigationViewModel)
         //加载数据与传参
-        viewModel.loadData(albumId as Long);
-
+        viewModel.loadData(albumId);
     }
 
-    //
-    private fun initLiveData() {
-
-        //这里如何刷新？
-        //viewModel.album?.observe(viewLifecycleOwner, Observer{
-        //update ui ?? 这个要怎么写?
-        //viewModel.album.value.imageUrl = it.imageUrl
-        //})
-    }
 
 }

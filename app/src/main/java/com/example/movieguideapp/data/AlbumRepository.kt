@@ -36,6 +36,10 @@ class AlbumRepository(
         }
     }
 
+    fun getById(id: Long): Single<Album> {
+        return Single.just(albumDao.getById(id))
+    }
+
     private fun Page<DiscoverResult>?.toListObject(): List<Album>? {
         return this?.results?.map { it.toObject() }
     }

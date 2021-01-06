@@ -4,9 +4,6 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.example.movieguideapp.ui.viewmodel.MyPlayerViewModel" />
     </data>
 
     <com.google.android.exoplayer2.ui.StyledPlayerView

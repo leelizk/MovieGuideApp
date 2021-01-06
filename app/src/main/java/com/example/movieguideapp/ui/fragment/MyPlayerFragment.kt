@@ -1,31 +1,25 @@
 package com.example.movieguideapp.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.navArgs
 import com.example.movieguideapp.R
 import com.example.movieguideapp.base.common.autoCleared
-import com.example.movieguideapp.base.utils.PlayUtil
 import com.example.movieguideapp.databinding.FragmentPlayerBinding
-import com.example.movieguideapp.ui.viewmodel.MyPlayerViewModel
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.ui.StyledPlayerView
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MyPlayerFragment : BaseFragment() {
 
-    var mPlayerView: StyledPlayerView? = null
-
-    private val viewModel: MyPlayerViewModel by viewModel();
-
     private var binding by autoCleared<FragmentPlayerBinding>()
 
-    private lateinit var videoUrl: String;
+    private val args: MyPlayerFragmentArgs by navArgs()
 
-    private lateinit var playUtil: PlayUtil;
+    private lateinit var videoUrl: String;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,28 +29,28 @@ class MyPlayerFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_player, container, false)
-        binding.viewModel = viewModel
-        playUtil = context?.let { PlayUtil(it) }!!
         return binding.root
     }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         //在这里设置liveData
-        videoUrl = arguments?.getString("play_url").toString()
+        videoUrl = args?.videoUrl.toString()
+        Log.i("Player", " 播放地址 >>>  ${videoUrl}")
         val mediaItem: MediaItem = MediaItem.fromUri(videoUrl);
         binding.playerView.player?.setMediaItem(mediaItem)
         binding.playerView.player?.prepare()
+        binding.playerView.player?.seekTo(0)
         binding.playerView.player?.play()
+        Log.i("Player", "start====>")
 
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
-        binding?.playerView.player?.release()
+        binding.playerView.player?.release()
 
     }
 
