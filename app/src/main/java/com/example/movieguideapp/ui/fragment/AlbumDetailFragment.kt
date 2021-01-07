@@ -47,10 +47,17 @@ class AlbumDetailFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         var albumId = args.itemId
         Log.i(TAG, "albumId ===> $albumId")
+        initLiveData();
         initNavigator(viewModel.navigationViewModel)
         //加载数据与传参
         viewModel.loadData(albumId);
     }
 
+
+    fun initLiveData() {
+        viewModel.album?.observe(viewLifecycleOwner, {
+            //刷新?
+        })
+    }
 
 }

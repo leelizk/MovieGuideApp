@@ -24,19 +24,18 @@ class AlbumDetailViewModel(
 
     fun loadData(albumId: Long?) {
         Log.i(TAG, "loadData ==> $albumId")
-        albumId.let {
             rxLaunch {
                 albumRepository.getById(albumId!!)
                         .with(schedulerProvider)
                         .subscribeBy(
                                 onSuccess = {
                                     Log.i("album", "test >>> ${it.title} , ${it.poster}")
+                                    //为什么没有刷新?
                                     _album?.value = it;
                                 },
                                 onError = { _errorLiveData.value = it }
                         )
             }
-        }
     }
 
 
